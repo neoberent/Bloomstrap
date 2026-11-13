@@ -1,0 +1,95 @@
+<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<base:AvaloniaWindow xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:vm="using:Froststrap.UI.ViewModels.ContextMenu"
+                     xmlns:resources="using:Froststrap.Resources"
+                     xmlns:controls="using:Froststrap.UI.Elements.Controls"
+                     xmlns:base="using:Froststrap.UI.Elements.Base"
+                     x:Class="Froststrap.UI.Elements.ContextMenu.ServerInformation"
+                     x:DataType="vm:ServerInformationViewModel"
+                     mc:Ignorable="d"
+                     Title="{x:Static resources:Strings.ContextMenu_ServerInformation_Title}"
+                     Width="420" SizeToContent="Height"
+                     CanResize="False"
+                     WindowStartupLocation="CenterScreen">
+
+    <Grid RowDefinitions="*, Auto">
+        <Grid Grid.Row="0" Margin="16,8,16,16">
+            <TextBlock Grid.Row="0" Text="{x:Static resources:Strings.ContextMenu_ServerInformation_NotInAServer}"
+                       IsVisible="{Binding !HasServerData}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20" />
+
+            <Border IsVisible="{Binding HasServerData}"
+                    Background="{DynamicResource BloomCardGlassBrush}"
+                    BorderBrush="{DynamicResource BloomGlassEdgeBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{DynamicResource BloomRadiusCard}"
+                    Padding="16,12,16,4">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                  ColumnDefinitions="Auto, *">
+                <Grid.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="Foreground" Value="{DynamicResource BloomSubtextBrush}" />
+                    </Style>
+                    <Style Selector="TextBlock.value">
+                        <Setter Property="Foreground" Value="{DynamicResource BloomTextBrush}" />
+                        <Setter Property="FontFamily" Value="{DynamicResource BloomMonoFont}" />
+                        <Setter Property="FontSize" Value="12.5" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="Margin" Value="0,0,0,12" />
+                    </Style>
+                </Grid.Styles>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,16,12" VerticalAlignment="Center"
+                           Text="{x:Static resources:Strings.ContextMenu_ServerInformation_Type}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Classes="value"
+                           Text="{Binding ServerType}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,16,12" VerticalAlignment="Center"
+                           Text="{x:Static resources:Strings.ContextMenu_ServerInformation_InstanceId}"
+                           IsVisible="{Binding ShowInstanceId}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Classes="value"
+                           Text="{Binding InstanceId}" IsVisible="{Binding ShowInstanceId}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,16,12" VerticalAlignment="Center"
+                           Text="{x:Static resources:Strings.ContextMenu_ServerInformation_AccessCode}"
+                           IsVisible="{Binding AccessCodeVisibility}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Classes="value"
+                           Text="{Binding AccessCode}" IsVisible="{Binding AccessCodeVisibility}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,0,16,12" VerticalAlignment="Center"
+                           Text="{x:Static resources:Strings.ContextMenu_ServerInformation_Location}"
+                           IsVisible="{Binding ServerLocationVisibility}" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Classes="value"
+                           Text="{Binding ServerLocation}" IsVisible="{Binding ServerLocationVisibility}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,16,12" VerticalAlignment="Center"
+                           Text="{x:Static resources:Strings.ContextMenu_ServerInformation_Uptime}"
+                           IsVisible="{Binding ServerUptimeVisibility}" />
+                <TextBlock Grid.Row="4" Grid.Column="1" Classes="value"
+                           Text="{Binding ServerUptime}" IsVisible="{Binding ServerUptimeVisibility}" />
+            </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="1" Padding="16,12"
+                Background="{DynamicResource BloomDockBrush}"
+                BorderBrush="{DynamicResource BloomGlassEdgeBrush}"
+                BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
+                <Button MinWidth="100" Classes="accent" Content="{Binding CopyButtonText}"
+                        Command="{Binding CopyCommand}" CommandParameter="{Binding $self}"
+                        IsVisible="{Binding HasServerData}" />
+                <Button Margin="12,0,0,0" MinWidth="100" Content="{x:Static resources:Strings.Common_Close}"
+                        Command="{Binding CloseCommand}" CommandParameter="{Binding $parent[Window]}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</base:AvaloniaWindow>

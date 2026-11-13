@@ -1,0 +1,173 @@
+<!--
+SPDX-FileCopyrightText: 2026 Bloomstrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<!--
+    Bloomstrap design tokens. The single source of truth for colour, type, shape and motion.
+    Colours are Catppuccin Mocha with a mauve accent, matching the niri + noctalia rice.
+    BloomTheme.cs maps FluentAvalonia's own brushes onto these, so edit values here only.
+-->
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Backgrounds: deepest to highest -->
+    <Color x:Key="BloomCrust">#11111B</Color>
+    <Color x:Key="BloomMantle">#181825</Color>
+    <Color x:Key="BloomBase">#1E1E2E</Color>
+    <Color x:Key="BloomSurface0">#313244</Color>
+    <Color x:Key="BloomSurface1">#45475A</Color>
+    <Color x:Key="BloomSurface2">#585B70</Color>
+
+    <!-- Text -->
+    <Color x:Key="BloomText">#CDD6F4</Color>
+    <Color x:Key="BloomSubtext">#A6ADC8</Color>
+    <Color x:Key="BloomHint">#7F849C</Color>
+    <Color x:Key="BloomDisabled">#6C7086</Color>
+
+    <!-- Accent: mauve only. Tints are mauve over base, used for quiet selection states. -->
+    <Color x:Key="BloomAccent">#CBA6F7</Color>
+    <Color x:Key="BloomAccentHover">#D5B8F9</Color>
+    <Color x:Key="BloomAccentPressed">#B795DE</Color>
+    <Color x:Key="BloomAccentTint">#24CBA6F7</Color>
+    <Color x:Key="BloomAccentTintHover">#33CBA6F7</Color>
+    <Color x:Key="BloomOnAccent">#11111B</Color>
+
+    <!-- Status -->
+    <Color x:Key="BloomSuccess">#A6E3A1</Color>
+    <Color x:Key="BloomWarning">#F9E2AF</Color>
+    <Color x:Key="BloomDanger">#F38BA8</Color>
+
+    <!-- Brushes for Bloomstrap's own controls -->
+    <SolidColorBrush x:Key="BloomCrustBrush" Color="{StaticResource BloomCrust}" />
+    <SolidColorBrush x:Key="BloomMantleBrush" Color="{StaticResource BloomMantle}" />
+    <!-- Glass layers: sit on the translucent window, so the blurred wallpaper still reads through -->
+    <SolidColorBrush x:Key="BloomMantleGlassBrush" Color="#8C181825" />
+    <SolidColorBrush x:Key="BloomPopupBrush" Color="#F2181825" />
+    <SolidColorBrush x:Key="BloomBaseBrush" Color="{StaticResource BloomBase}" />
+    <SolidColorBrush x:Key="BloomSurfaceBrush" Color="{StaticResource BloomSurface0}" Opacity="0.6" />
+    <SolidColorBrush x:Key="BloomSurfaceSolidBrush" Color="{StaticResource BloomSurface0}" />
+    <SolidColorBrush x:Key="BloomHoverBrush" Color="{StaticResource BloomSurface1}" />
+    <!-- Hover outline, and "clear" brushes: fully transparent but Mocha-tinted, so nothing that
+         fades to or from them can pass through white -->
+    <SolidColorBrush x:Key="BloomLineHoverBrush" Color="{StaticResource BloomHint}" />
+    <SolidColorBrush x:Key="BloomLineClearBrush" Color="#007F849C" />
+    <SolidColorBrush x:Key="BloomClearBrush" Color="#00313244" />
+    <SolidColorBrush x:Key="BloomOnAccentDividerBrush" Color="#4011111B" />
+    <SolidColorBrush x:Key="BloomSurfaceHoverBrush" Color="{StaticResource BloomSurface1}" Opacity="0.6" />
+    <SolidColorBrush x:Key="BloomLineBrush" Color="{StaticResource BloomSurface1}" />
+    <SolidColorBrush x:Key="BloomTextBrush" Color="{StaticResource BloomText}" />
+    <SolidColorBrush x:Key="BloomSubtextBrush" Color="{StaticResource BloomSubtext}" />
+    <SolidColorBrush x:Key="BloomHintBrush" Color="{StaticResource BloomHint}" />
+    <SolidColorBrush x:Key="BloomAccentBrush" Color="{StaticResource BloomAccent}" />
+    <SolidColorBrush x:Key="BloomAccentTintBrush" Color="{StaticResource BloomAccentTint}" />
+    <SolidColorBrush x:Key="BloomAccentTintHoverBrush" Color="{StaticResource BloomAccentTintHover}" />
+    <SolidColorBrush x:Key="BloomSuccessBrush" Color="{StaticResource BloomSuccess}" />
+    <SolidColorBrush x:Key="BloomWarningBrush" Color="{StaticResource BloomWarning}" />
+    <SolidColorBrush x:Key="BloomDangerBrush" Color="{StaticResource BloomDanger}" />
+
+    <!--
+        ───── Bloom signature ─────
+        Petal: mauve opening into Mocha pink. Only on the few things that matter
+        (the launch button, the active page pip, progress, the wordmark), so it stays special.
+    -->
+    <Color x:Key="BloomRose">#F5C2E7</Color>
+    <LinearGradientBrush x:Key="BloomPetalBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Offset="0" Color="#CBA6F7" />
+        <GradientStop Offset="1" Color="#F5C2E7" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BloomPetalVerticalBrush" StartPoint="50%,0%" EndPoint="50%,100%">
+        <GradientStop Offset="0" Color="#CBA6F7" />
+        <GradientStop Offset="1" Color="#F5C2E7" />
+    </LinearGradientBrush>
+    <!-- The split launch button: each half carries its share of the petal, so the seam lines up -->
+    <LinearGradientBrush x:Key="BloomPetalLeftBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+        <GradientStop Offset="0" Color="#CBA6F7" />
+        <GradientStop Offset="1" Color="#E6B4EE" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BloomPetalRightBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+        <GradientStop Offset="0" Color="#E6B4EE" />
+        <GradientStop Offset="1" Color="#F5C2E7" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BloomPetalLeftHoverBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+        <GradientStop Offset="0" Color="#D7B9F9" />
+        <GradientStop Offset="1" Color="#ECC3F2" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BloomPetalRightHoverBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+        <GradientStop Offset="0" Color="#ECC3F2" />
+        <GradientStop Offset="1" Color="#F8D0EC" />
+    </LinearGradientBrush>
+
+    <!-- Glass cards: half-transparent surface0, so the blurred wallpaper still breathes through,
+         rimmed by one even 1px line all the way round -->
+    <SolidColorBrush x:Key="BloomCardGlassBrush" Color="#7A313244" />
+    <SolidColorBrush x:Key="BloomCardGlassHoverBrush" Color="#9945475A" />
+    <SolidColorBrush x:Key="BloomGlassEdgeBrush" Color="#997F849C" />
+
+    <!-- The floating action dock (like the noctalia dock) -->
+    <SolidColorBrush x:Key="BloomDockBrush" Color="#A6181825" />
+
+    <!-- Bloom glow: two soft pools of light behind the glass, mauve up-left, pink down-right.
+         Static brushes painted once under the content; no animation, no per-frame cost. -->
+    <RadialGradientBrush x:Key="BloomGlowMauveBrush" Center="8%,0%" GradientOrigin="8%,0%" RadiusX="55%" RadiusY="75%">
+        <GradientStop Offset="0" Color="#38CBA6F7" />
+        <GradientStop Offset="0.5" Color="#14CBA6F7" />
+        <GradientStop Offset="1" Color="#00CBA6F7" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="BloomGlowRoseBrush" Center="100%,100%" GradientOrigin="100%,100%" RadiusX="50%" RadiusY="70%">
+        <GradientStop Offset="0" Color="#2EF5C2E7" />
+        <GradientStop Offset="0.5" Color="#10F5C2E7" />
+        <GradientStop Offset="1" Color="#00F5C2E7" />
+    </RadialGradientBrush>
+
+    <!-- Type: Geologica is the desktop UI font, Fira Code the terminal font. Inter is the bundled fallback. -->
+    <FontFamily x:Key="BloomFont">Geologica, fonts:Froststrap#Inter</FontFamily>
+    <FontFamily x:Key="BloomMonoFont">Fira Code, monospace</FontFamily>
+    <x:Double x:Key="BloomTextCaption">12</x:Double>
+    <x:Double x:Key="BloomTextBody">13</x:Double>
+    <x:Double x:Key="BloomTextSubtitle">15</x:Double>
+    <x:Double x:Key="BloomTextTitle">20</x:Double>
+    <x:Double x:Key="BloomTextDisplay">26</x:Double>
+
+    <!-- Shape: window 14 (clipped by niri), cards 10, controls 8 -->
+    <CornerRadius x:Key="BloomRadiusCard">10</CornerRadius>
+    <CornerRadius x:Key="BloomRadiusControl">8</CornerRadius>
+    <CornerRadius x:Key="BloomRadiusPill">999</CornerRadius>
+
+    <!-- FluentAvalonia shape keys, mapped to the Bloom scale -->
+    <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
+    <CornerRadius x:Key="OverlayCornerRadius">10</CornerRadius>
+    <x:Double x:Key="ControlContentThemeFontSize">13</x:Double>
+    <FontFamily x:Key="ContentControlThemeFontFamily">Geologica, fonts:Froststrap#Inter</FontFamily>
+
+    <!-- Sidebar: mantle glass pane, content straight on the window glass, active page = mauve tint capsule (echoes the noctalia bar) -->
+    <!-- One sheet of glass: the sidebar is only a faint mantle wash, so the glow runs under it too -->
+    <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="#33181825" />
+    <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#33181825" />
+    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="#001E1E2E" />
+    <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="BloomLineBrush" />
+    <CornerRadius x:Key="NavigationViewContentGridCornerRadius">0</CornerRadius>
+    <StaticResource x:Key="NavigationViewItemBackgroundSelected" ResourceKey="BloomAccentTintBrush" />
+    <StaticResource x:Key="NavigationViewItemBackgroundSelectedPointerOver" ResourceKey="BloomAccentTintHoverBrush" />
+    <StaticResource x:Key="NavigationViewItemBackgroundSelectedPressed" ResourceKey="BloomAccentTintBrush" />
+    <StaticResource x:Key="NavigationViewItemForeground" ResourceKey="BloomSubtextBrush" />
+    <StaticResource x:Key="NavigationViewItemForegroundPointerOver" ResourceKey="BloomTextBrush" />
+    <StaticResource x:Key="NavigationViewItemForegroundSelected" ResourceKey="BloomTextBrush" />
+    <StaticResource x:Key="NavigationViewItemForegroundSelectedPointerOver" ResourceKey="BloomTextBrush" />
+    <StaticResource x:Key="NavigationViewSelectionIndicatorForeground" ResourceKey="BloomAccentBrush" />
+    <StaticResource x:Key="NavigationViewItemSeparatorForeground" ResourceKey="BloomLineBrush" />
+
+    <!-- Inputs: crust well when focused, a plain 1px mauve outline instead of Fluent's underline -->
+    <StaticResource x:Key="TextControlBorderBrush" ResourceKey="BloomLineBrush" />
+    <StaticResource x:Key="TextControlBorderBrushPointerOver" ResourceKey="BloomLineBrush" />
+    <StaticResource x:Key="TextControlBorderBrushFocused" ResourceKey="BloomAccentBrush" />
+    <StaticResource x:Key="TextControlBackgroundFocused" ResourceKey="BloomCrustBrush" />
+    <Thickness x:Key="TextControlBorderThemeThicknessFocused">1</Thickness>
+
+    <!--
+        Motion (used literally in Styles.axaml, since transitions don't take resources):
+        hover 120 ms, state 180 ms, page 240 ms, all CubicEaseOut. No bounce, scale or glow.
+        This matches niri's ease-out-cubic and its critically damped springs.
+    -->
+</ResourceDictionary>

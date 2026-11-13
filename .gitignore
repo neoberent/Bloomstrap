@@ -1,0 +1,23 @@
+# FS/OS hint touches
+.DS_Store
+.Spotlight-V100
+.Trashes
+*humbs.db
+[Dd]esktop.ini
+
+# IDE stuff
+.vs/
+.idea/
+.vscode/
+*.user
+
+# Build artifacts
+target
+result
+.build/
+[Bb]in/
+[Oo]bj/
+Releases/
+publish/
+!build/src/action/publish/
+Publish.bat

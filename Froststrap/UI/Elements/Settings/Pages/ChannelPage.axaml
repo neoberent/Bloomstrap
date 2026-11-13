@@ -1,0 +1,495 @@
+<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<UserControl
+    x:Class="Froststrap.UI.Elements.Settings.Pages.ChannelPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:ui="using:FluentAvalonia.UI.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Froststrap.UI.Elements.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:Froststrap.Resources"
+    xmlns:gv="using:Froststrap.UI.ViewModels"
+    xmlns:vm="clr-namespace:Froststrap.UI.ViewModels.Settings"
+    d:DesignHeight="900"
+    d:DesignWidth="800"
+    x:DataType="vm:ChannelViewModel"
+    mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel Margin="14,10">
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="4">
+                <controls:CardAction
+                    Grid.Column="0"
+                    Header="{x:Static resources:Strings.Menu_BottomButtons_ImportSettings}"
+                    Command="{Binding ImportSettingsCommand}"
+                    CommandParameter="{Binding $parent[UserControl]}"
+                    Icon="Import" />
+
+                <controls:CardAction
+                    Grid.Column="1"
+                    Header="{x:Static resources:Strings.Menu_BottomButtons_ResetSettingsToDefault}"
+                    Command="{Binding ResetSettingsToDefaultCommand}"
+                    Icon="RotateCcw" />
+
+                <controls:CardAction
+                    Grid.Column="2"
+                    Header="{x:Static resources:Strings.Menu_BottomButtons_ExportSettings}"
+                    Command="{Binding ExportSettingsCommand}"
+                    CommandParameter="{Binding $parent[UserControl]}"
+                    Icon="ArrowRightFromLine" />
+            </Grid>
+
+            <controls:SectionHeader
+                Title="Bloomstrap"
+                Description="{x:Static resources:Strings.Menu_Deployment_Froststrap_Description}" />
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Deployment_CheckForUpdates_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_CheckForUpdates_Description}">
+                <StackPanel Spacing="8" HorizontalAlignment="Right">
+                    <Button
+                        Content="{x:Static resources:Strings.Menu_Deployment_CheckForUpdates_Button}"
+                        Command="{Binding CheckForUpdatesCommand}"
+                        IsEnabled="{Binding CanCheckForUpdates}"
+                        HorizontalAlignment="Right"
+ />
+
+                    <TextBlock
+                        Text="{Binding UpdateStatus}"
+                        IsVisible="{Binding HasUpdateStatus}"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        FontSize="12"
+                        HorizontalAlignment="Right"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Bootstrapper_AutoUpdate_Title}"
+                Description="{x:Static resources:Strings.Menu_Bootstrapper_AutoUpdate_Description}">
+                <ToggleSwitch IsChecked="{Binding AutomaticUpdatesEnabled, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Deployment_AutoPreReleaseUpdate_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_AutoPreReleaseUpdate_Description}">
+                <ToggleSwitch IsChecked="{Binding PreReleaseUpdatesEnabled, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_TestMode}"
+                Description="{x:Static resources:Strings.Menu_TestMode_Description}">
+                <ToggleSwitch IsChecked="{Binding TestModeEnabled, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Deployment_MoveInstallation_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_MoveInstallation_Description}"
+                IsVisible="{x:Static gv:GlobalViewModel.IsWindowsOrMacOS}">
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="4"
+                    RowSpacing="8"
+                    Width="200">
+                    <TextBox Text="{Binding StorageDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <controls:IconButton
+                        Grid.Column="1"
+                        Command="{Binding BrowseStorageDirectoryCommand}"
+                        CommandParameter="{Binding $parent[UserControl]}"
+                        Icon="Folder" />
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Content="{x:Static resources:Strings.Menu_Deployment_MoveInstallation}"
+                        Command="{Binding MoveStorageDirectoryCommand}"
+                        HorizontalAlignment="Stretch" />
+                </Grid>
+            </controls:OptionControl>
+
+            <controls:SectionHeader
+                Title="Roblox"
+                Description="{x:Static resources:Strings.Menu_Deployment_Player_Description}" />
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Deployment_AutoUpdateSober}"
+                IsVisible="{x:Static gv:GlobalViewModel.IsLinux}">
+                <ToggleSwitch IsChecked="{Binding AutomaticallyUpdateSober, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Bootstrapper_ForceRobloxReinstall_Title}"
+                Description="{x:Static resources:Strings.Menu_Bootstrapper_ForceRobloxReinstall_Description}"
+                IsEnabled="{Binding !IsRobloxInstallationMissing}">
+                <ToggleSwitch IsChecked="{Binding ForceRobloxReinstallation, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Channel_RobloxUpgrades}"
+                Description="{x:Static resources:Strings.Menu_Channel_RobloxUpgrades_Description}"
+                IsEnabled="{Binding !IsRobloxInstallationMissing}"
+                IsVisible="{x:Static gv:GlobalViewModel.IsWindowsOrMacOS}">
+                <ToggleSwitch IsChecked="{Binding UpdateRoblox, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_Deployment_PlayerOverrideHash_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_PlayerOverrideHash_Description}"
+                IsExpanded="{Binding PlayerVersionOverrideEnabled, Mode=TwoWay}"
+                IsVisible="{x:Static gv:GlobalViewModel.IsWindowsOrMacOS}"
+                Classes="NoUserExpansion">
+                <controls:CardExpander.HeaderContent>
+                    <ToggleSwitch IsChecked="{Binding PlayerVersionOverrideEnabled, Mode=TwoWay}" />
+                </controls:CardExpander.HeaderContent>
+                <StackPanel>
+                    <controls:OptionControl
+                        Header="{x:Static resources:Strings.Menu_Deployment_VersionHash_Title}"
+                        Description="{x:Static resources:Strings.Menu_Deployment_VersionHash_Description}">
+                        <StackPanel Spacing="8">
+                            <TextBox
+                                PlaceholderText="version-xxxxxxxxxxxxxxxx"
+                                Text="{Binding PlayerVersionOverrideHash, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding PlayerVersionOverrideEnabled}"
+                                Width="280" />
+
+                            <StackPanel
+                                IsVisible="{Binding !IsPlayerHashIdle}"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <ui:FAProgressRing
+                                    IsVisible="{Binding IsPlayerHashChecking}"
+                                    IsIndeterminate="True"
+                                    Width="18"
+                                    Height="18" />
+
+                                <Image
+                                    Source="avares://Froststrap/Resources/MessageBox/Information.png"
+                                    IsVisible="{Binding IsPlayerHashValid}"
+                                    RenderOptions.BitmapInterpolationMode="HighQuality"
+                                    Width="18"
+                                    Height="18" />
+
+                                <Image
+                                    Source="avares://Froststrap/Resources/MessageBox/Error.png"
+                                    IsVisible="{Binding IsPlayerHashInvalid}"
+                                    RenderOptions.BitmapInterpolationMode="HighQuality"
+                                    Width="18"
+                                    Height="18" />
+
+                                <TextBlock
+                                    Text="{Binding PlayerHashValidationMessage}"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    FontSize="12"
+                                    VerticalAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+                        </StackPanel>
+                    </controls:OptionControl>
+
+                    <controls:OptionControl Header="Available Version Hashes">
+                        <Button
+                            Content="Show Available Versions"
+                            Command="{Binding BrowsePlayerVersionHashCommand}"
+                            CommandParameter="{Binding $parent[UserControl]}"
+                            IsEnabled="{Binding PlayerVersionOverrideEnabled}" />
+                    </controls:OptionControl>
+                </StackPanel>
+            </controls:CardExpander>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Deployment_MultiThread_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_MultiThread_Description}">
+                <TextBox
+                    Text="{Binding MaxThreadDownload, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="200" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Channel_StaticDirectory_Title}"
+                Description="{x:Static resources:Strings.Menu_Channel_StaticDirectory_Description}">
+                <ToggleSwitch IsChecked="{Binding StaticDirectory, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_Deployment_PlayerChannel_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_Channel_Description}"
+                IsExpanded="True"
+                IsVisible="{x:Static gv:GlobalViewModel.IsWindowsOrMacOS}">
+                <controls:CardExpander.HeaderContent>
+                    <TextBox
+                        Text="{Binding PlayerChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding !PlayerVersionOverrideEnabled}"
+                        Width="200" />
+                </controls:CardExpander.HeaderContent>
+
+                <StackPanel Spacing="8">
+                    <Grid
+                        RowDefinitions="Auto,Auto,Auto,Auto"
+                        ColumnDefinitions="Auto,*"
+                        IsVisible="{Binding PlayerDeployInfo, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        ColumnSpacing="16"
+                        RowSpacing="8">
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_Version}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Text="{Binding PlayerDeployInfo.Version, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_VersionGuid}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding PlayerDeployInfo.VersionGuid, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_Timestamp}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding PlayerDeployInfo.Timestamp, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <StackPanel
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            IsVisible="{Binding PlayerShowChannelWarning, Mode=OneWay}"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Image
+                                Source="avares://Froststrap/Resources/MessageBox/Warning.png"
+                                RenderOptions.BitmapInterpolationMode="HighQuality"
+                                Width="24"
+                                Height="24" />
+                            <TextBlock
+                                Text="{x:Static resources:Strings.Menu_Deployment_Channel_OutOfDate}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid
+                        ColumnDefinitions="Auto,*"
+                        IsVisible="{Binding PlayerDeployInfo, Converter={x:Static ObjectConverters.IsNull}}"
+                        ColumnSpacing="16">
+                        <ui:FAProgressRing
+                            Grid.Column="0"
+                            IsVisible="{Binding !PlayerShowLoadingError, Mode=OneWay}"
+                            IsIndeterminate="True"
+                            Width="64"
+                            Height="64" />
+
+                        <Image
+                            Grid.Column="0"
+                            Source="avares://Froststrap/Resources/MessageBox/FullQuality/Error.png"
+                            IsVisible="{Binding PlayerShowLoadingError, Mode=OneWay}"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Width="64"
+                            Height="64" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Text="{Binding PlayerInfoLoadingText, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </StackPanel>
+            </controls:CardExpander>
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_Channel_ChangeAction_Title}"
+                Description="{x:Static resources:Strings.Menu_Channel_ChangeAction_Description}">
+                <ComboBox
+                    ItemsSource="{Binding ChannelChangeModes.Keys, Mode=OneTime}"
+                    SelectedItem="{Binding SelectedChannelChangeMode, Mode=TwoWay}"
+                    Width="200" />
+            </controls:OptionControl>
+
+            <controls:SectionHeader
+                Title="{x:Static resources:Strings.Common_Studio}"
+                Description="{x:Static resources:Strings.Menu_Deployment_Studio_Description}" />
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_Deployment_OverrideHash_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_OverrideHash_Description}"
+                IsExpanded="{Binding StudioVersionOverrideEnabled, Mode=TwoWay}"
+                Classes="NoUserExpansion">
+                <controls:CardExpander.HeaderContent>
+                    <ToggleSwitch IsChecked="{Binding StudioVersionOverrideEnabled, Mode=TwoWay}" />
+                </controls:CardExpander.HeaderContent>
+                <StackPanel>
+                    <controls:OptionControl
+                        Header="{x:Static resources:Strings.Menu_Deployment_VersionHash_Title}"
+                        Description="{x:Static resources:Strings.Menu_Deployment_VersionHash_Description}">
+                        <StackPanel Spacing="8">
+                            <TextBox
+                                PlaceholderText="version-xxxxxxxxxxxxxxxx"
+                                Text="{Binding StudioVersionOverrideHash, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{Binding StudioVersionOverrideEnabled}"
+                                Width="280" />
+
+                            <StackPanel
+                                IsVisible="{Binding !IsStudioHashIdle}"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <ui:FAProgressRing
+                                    IsVisible="{Binding IsStudioHashChecking}"
+                                    IsIndeterminate="True"
+                                    Width="18"
+                                    Height="18" />
+
+                                <Image
+                                    Source="avares://Froststrap/Resources/MessageBox/Information.png"
+                                    IsVisible="{Binding IsStudioHashValid}"
+                                    RenderOptions.BitmapInterpolationMode="HighQuality"
+                                    Width="18"
+                                    Height="18" />
+
+                                <Image
+                                    Source="avares://Froststrap/Resources/MessageBox/Error.png"
+                                    IsVisible="{Binding IsStudioHashInvalid}"
+                                    RenderOptions.BitmapInterpolationMode="HighQuality"
+                                    Width="18"
+                                    Height="18" />
+
+                                <TextBlock
+                                    Text="{Binding StudioHashValidationMessage}"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    FontSize="12"
+                                    VerticalAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+                        </StackPanel>
+                    </controls:OptionControl>
+
+                    <controls:OptionControl Header="Available Version Hashes">
+                        <Button
+                            Content="Show Available Versions"
+                            Command="{Binding BrowseStudioVersionHashCommand}"
+                            CommandParameter="{Binding $parent[UserControl]}"
+                            IsEnabled="{Binding StudioVersionOverrideEnabled}" />
+                    </controls:OptionControl>
+                </StackPanel>
+            </controls:CardExpander>
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_Deployment_StudioChannel_Title}"
+                Description="{x:Static resources:Strings.Menu_Deployment_Channel_Description}"
+                IsExpanded="True">
+                <controls:CardExpander.HeaderContent>
+                    <TextBox
+                        Text="{Binding StudioChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding !StudioVersionOverrideEnabled}"
+                        Width="200" />
+                </controls:CardExpander.HeaderContent>
+
+                <StackPanel Spacing="8">
+                    <Grid
+                        RowDefinitions="Auto,Auto,Auto,Auto"
+                        ColumnDefinitions="Auto,*"
+                        IsVisible="{Binding StudioDeployInfo, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        ColumnSpacing="16"
+                        RowSpacing="8">
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_Version}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Text="{Binding StudioDeployInfo.Version, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_VersionGuid}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding StudioDeployInfo.VersionGuid, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="{x:Static resources:Strings.Common_Timestamp}"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding StudioDeployInfo.Timestamp, Mode=OneWay}"
+                            Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                        <StackPanel
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            IsVisible="{Binding StudioShowChannelWarning, Mode=OneWay}"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Image
+                                Source="avares://Froststrap/Resources/MessageBox/Warning.png"
+                                RenderOptions.BitmapInterpolationMode="HighQuality"
+                                Width="24"
+                                Height="24" />
+                            <TextBlock
+                                Text="{x:Static resources:Strings.Menu_Deployment_Channel_OutOfDate}"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid
+                        ColumnDefinitions="Auto,*"
+                        IsVisible="{Binding StudioDeployInfo, Converter={x:Static ObjectConverters.IsNull}}"
+                        ColumnSpacing="16">
+                        <ui:FAProgressRing
+                            Grid.Column="0"
+                            IsVisible="{Binding !StudioShowLoadingError, Mode=OneWay}"
+                            IsIndeterminate="True"
+                            Width="64"
+                            Height="64" />
+
+                        <Image
+                            Grid.Column="0"
+                            Source="avares://Froststrap/Resources/MessageBox/FullQuality/Error.png"
+                            IsVisible="{Binding StudioShowLoadingError, Mode=OneWay}"
+                            RenderOptions.BitmapInterpolationMode="HighQuality"
+                            Width="64"
+                            Height="64" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Text="{Binding StudioInfoLoadingText, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </StackPanel>
+            </controls:CardExpander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- Bloomstrap mark without the tile: for use inside tinted capsules -->
+  <g transform="translate(80 84)" fill="#cba6f7" stroke="#1e1e2e" stroke-width="5">
+    <ellipse cx="0" cy="-42" rx="21" ry="42"/>
+    <ellipse cx="0" cy="-42" rx="21" ry="42" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-42" rx="21" ry="42" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-42" rx="21" ry="42" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-42" rx="21" ry="42" transform="rotate(288)"/>
+    <circle r="17" fill="#1e1e2e" stroke="none"/>
+    <circle r="8" fill="#f5c2e7" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+[package]
+name = "mobileappreg"
+version = "1.0.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+log.workspace = true
+logger.workspace = true
+objc2-core-services.workspace = true
+objc2-core-foundation.workspace = true

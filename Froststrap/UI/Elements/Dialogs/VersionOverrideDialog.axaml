@@ -1,0 +1,69 @@
+﻿<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<base:AvaloniaWindow
+	x:Class="Froststrap.UI.Elements.Dialogs.VersionOverrideDialog"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:base="clr-namespace:Froststrap.UI.Elements.Base"
+	xmlns:controls="clr-namespace:Froststrap.UI.Elements.Controls"
+	xmlns:local="clr-namespace:Froststrap.UI.Elements.Dialogs"
+	xmlns:resources="clr-namespace:Froststrap.Resources"
+	mc:Ignorable="d"
+	x:DataType="local:VersionOverrideDialog"
+	Title="Available Version"
+	Width="750"
+	Height="500"
+	WindowStartupLocation="CenterScreen"
+>
+	<Grid RowDefinitions="*,Auto">
+		<controls:AotDataGrid Grid.Row="0"
+		                      Name="VersionsGrid"
+		                      Margin="16"
+		                      ItemsSource="{Binding Versions}"
+		                      SelectionMode="Single">
+			<controls:AotDataGrid.Columns>
+				<controls:AotDataGridColumn Header="Version" Width="150">
+					<controls:AotDataGridColumn.CellTemplate>
+						<DataTemplate x:DataType="local:VersionEntry">
+							<TextBlock Text="{Binding Version}" VerticalAlignment="Center" Margin="4,0" />
+						</DataTemplate>
+					</controls:AotDataGridColumn.CellTemplate>
+				</controls:AotDataGridColumn>
+
+				<controls:AotDataGridColumn Header="Hash" Width="4*">
+					<controls:AotDataGridColumn.CellTemplate>
+						<DataTemplate x:DataType="local:VersionEntry">
+							<TextBlock Text="{Binding Hash}"
+							           VerticalAlignment="Center"
+							           Margin="4,0"
+							           TextTrimming="CharacterEllipsis" />
+						</DataTemplate>
+					</controls:AotDataGridColumn.CellTemplate>
+				</controls:AotDataGridColumn>
+
+				<controls:AotDataGridColumn Header="Release Date" Width="200">
+					<controls:AotDataGridColumn.CellTemplate>
+						<DataTemplate x:DataType="local:VersionEntry">
+							<TextBlock Text="{Binding Date}" VerticalAlignment="Center" Margin="4,0" />
+						</DataTemplate>
+					</controls:AotDataGridColumn.CellTemplate>
+				</controls:AotDataGridColumn>
+			</controls:AotDataGrid.Columns>
+		</controls:AotDataGrid>
+
+		<Border Grid.Row="1" Padding="15"
+                Background="{DynamicResource ControlFillColorDefaultBrush}">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="6">
+				<Button x:Name="CopyHashButton" Content="Copy Version Hash" IsEnabled="False" />
+				<Button x:Name="RefreshButton" Content="Refetch" />
+				<Button x:Name="CloseButton" Content="Close" />
+			</StackPanel>
+		</Border>
+	</Grid>
+</base:AvaloniaWindow>

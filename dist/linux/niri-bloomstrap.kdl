@@ -1,0 +1,38 @@
+// Bloomstrap · niri window rules
+// Add to ~/.config/niri/config.kdl with:  include "bloomstrap.kdl"
+// (copy this file next to config.kdl first)
+//
+// Bloomstrap draws no title bar. Close with Mod+Q, and drag from any empty area
+// (or Mod + left-drag, as usual).
+// Check the app-id with:  niri msg windows
+
+// All Bloomstrap windows: same 14 px radius and mauve focus ring as the rest of the rice
+window-rule {
+    match app-id="(?i)^bloomstrap$"
+    geometry-corner-radius 14
+    clip-to-geometry true
+    draw-border-with-background false
+    // Bloomstrap's window is ~78% opaque Mocha; this blurs what sits behind it
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// Launch progress, launch menu and message boxes are small and short-lived: float them centred.
+// The settings window has its own title, so it stays tiled like any other app.
+window-rule {
+    match app-id="(?i)^bloomstrap$" title="^Bloomstrap$"
+    open-floating true
+    open-focused true
+    // the launch card is drawn with a 12px radius; clip the window to match
+    geometry-corner-radius 12
+}
+
+// Sober (Roblox): open maximized, not fullscreen. Fullscreen locks Sober to the monitor's
+// refresh rate; windowed it runs at the FPS cap you set. Bloomstrap also starts it windowed.
+window-rule {
+    match app-id=r#"^org\.vinegarhq\.Sober$"#
+    open-maximized true
+    open-fullscreen false
+}

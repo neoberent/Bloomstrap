@@ -1,0 +1,79 @@
+# SPDX-FileCopyrightText: 2026 Froststrap
+#
+# SPDX-License-Identifier: MPL-2.0
+
+[workspace]
+resolver = "3"
+members = [
+  "notify",
+  "logger",
+  "mobileappreg",
+  "virtualdisplay",
+]
+default-members = [
+  "notify",
+]
+
+[workspace.package]
+edition = "2024"
+license = "MPL-2.0"
+authors = [
+  "Invra <identificationsucks@gmail.com>",
+  "UltimatePlayer97 <gogole.help134@gmail.com>",
+  "RealMeddsam <meddsamreal@gmail.com>"
+]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = "symbols"
+panic = "abort"
+incremental = false
+
+[workspace.dependencies]
+log = "0.4"
+objc2 = "0.6"
+block2 = "0.6"
+dispatch2 = "0.3"
+
+[workspace.dependencies.logger]
+path = "logger"
+
+[workspace.dependencies.objc2-core-foundation]
+version = "0.3"
+default-features = false
+features = [
+  "CFString",
+  "CFCGTypes",
+]
+
+[workspace.dependencies.objc2-core-services]
+version = "0.3"
+default-features = false
+features = [
+  "LaunchServices",
+  "LSInfo",
+]
+
+[workspace.dependencies.objc2-core-graphics]
+version = "0.3"
+default-features = false
+features = [
+  "CGDirectDisplay",
+  "CGDisplayConfiguration",
+  "CGError",
+  "libc",
+  "objc2"
+]
+
+[workspace.dependencies.dbus]
+version = "0.9"
+default-features = false
+
+[workspace.dependencies.windows]
+version = "0.62.2"
+features = [
+  "UI_Notifications",
+  "Data_Xml_Dom",
+]

@@ -1,0 +1,82 @@
+<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:Froststrap.UI.ViewModels"
+             xmlns:dmodels="clr-namespace:Froststrap.UI.ViewModels.About"
+             xmlns:controls="clr-namespace:Froststrap.UI.Elements.Controls"
+             xmlns:resources="clr-namespace:Froststrap.Resources"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1500"
+             x:DataType="dmodels:AboutViewModel"
+             x:Class="Froststrap.UI.Elements.About.Pages.AboutPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="14">
+            <Grid Margin="0,24" HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
+                <Image Grid.Column="0" x:Name="Image" Width="76" Height="76" VerticalAlignment="Center"
+                       Source="avares://Froststrap/Resources/Froststrap.png" RenderOptions.BitmapInterpolationMode="HighQuality" />
+
+                <StackPanel Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Bloomstrap" FontSize="26" FontWeight="SemiBold" />
+                    <TextBlock Text="{x:Static resources:Strings.Menu_About_Description}"
+                               Foreground="{DynamicResource TextFillColorTertiaryBrush}"  />
+                </StackPanel>
+            </Grid>
+
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <controls:IconButton
+                    Icon="CircleQuestionMark"
+                    VerticalAlignment="Center"
+                    Padding="14,8"
+                    IconSize="18"
+                    Content="{x:Static resources:Strings.Menu_About_HelpInformation}"
+                    Command="{x:Static models:GlobalViewModel.OpenWebpageCommand}"
+                    CommandParameter="https://bloxstraplabs.com/wiki/" />
+            </WrapPanel>
+
+            <StackPanel>
+                <TextBlock Text="{x:Static resources:Strings.Menu_About_BuildInfo}" FontWeight="Bold" FontSize="20" Margin="0,16,0,0" />
+
+                <Grid Margin="0,8,0,0" ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,4,16,4" FontSize="14" Text="{x:Static resources:Strings.Common_Timestamp}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"
+                               Text="{Binding BuildTimestamp}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,4,16,4" FontSize="14" Text="{x:Static resources:Strings.Common_Version}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
+                               Text="{Binding Version}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                </Grid>
+            </StackPanel>
+
+            <TextBlock Text="{x:Static resources:Strings.Menu_About_Contributors}" FontWeight="Bold" FontSize="20" Margin="0,16,0,0" />
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_About_Contributors_Code}"
+                Description="{x:Static resources:Strings.Menu_About_Contributors_Code_Description}"
+                Margin="0,4,0,0"
+                IsExpanded="True"
+            >
+                <TextBlock Text="Neo Berent" />
+            </controls:CardExpander>
+
+            <controls:CardExpander
+                Header="{x:Static resources:Strings.Menu_About_Contributors_Insipirations}"
+                Description="{x:Static resources:Strings.Menu_About_Contributors_Insipirations_Description}"
+            >
+                <StackPanel>
+                    <controls:MarkdownTextBlock MarkdownText="[Froststrap](https://github.com/Froststrap/Froststrap)" />
+                    <controls:MarkdownTextBlock MarkdownText="[Bloxstrap](https://github.com/bloxstraplabs/bloxstrap)" />
+                    <controls:MarkdownTextBlock MarkdownText="[Fishstrap](https://github.com/fishstrap/fishstrap)" />
+                    <controls:MarkdownTextBlock MarkdownText="[AppleBlox](https://github.com/AppleBlox/appleblox)" />
+                    <controls:MarkdownTextBlock MarkdownText="[Sober/Vinegar](https://github.com/vinegarhq/vinegar)" />
+                    <controls:MarkdownTextBlock MarkdownText="[MaximumADHD](https://github.com/MaximumADHD)" />
+                </StackPanel>
+            </controls:CardExpander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

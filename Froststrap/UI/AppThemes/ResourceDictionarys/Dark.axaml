@@ -1,0 +1,18 @@
+<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="Froststrap.UI.AppThemes.ResourceDictionarys.Dark">
+
+    <SolidColorBrush x:Key="NormalDarkAndLightBackground"  Color="#01000000" />
+
+    <!-- Bloomstrap glass: Mocha base at 72 % (kitty sits at 75-85 %), niri blurs what is behind
+         (opaque fallback in AvaloniaWindow) -->
+    <SolidColorBrush x:Key="ApplicationBackgroundColor"    Color="#B81E1E2E" />
+
+    <SolidColorBrush x:Key="NotificationBackgroundColor"   Color="#313244" />
+</ResourceDictionary>

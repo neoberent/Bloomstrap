@@ -1,0 +1,5 @@
+[alias]
+xtask = "run --timings --manifest-path ./build/Cargo.toml --"
+xp = "xtask publish"
+xpni = "xp --no-installers"
+xc = "xtask clean"

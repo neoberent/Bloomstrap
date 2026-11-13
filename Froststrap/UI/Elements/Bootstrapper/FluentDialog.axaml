@@ -1,0 +1,126 @@
+<!--
+SPDX-FileCopyrightText: 2026 Froststrap
+SPDX-FileCopyrightText: 2026 Bloomstrap
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<!--
+    Bloomstrap launch card: a small floating surface (#313244, 1px #45475a, radius 12) with the
+    mark in a mauve-tint capsule, one status line, a 4px progress line and a quiet Skip action.
+    niri clips the window to the same 12px radius (see dist/linux/niri-bloomstrap.kdl).
+-->
+<base:AvaloniaDialogBase
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Froststrap.UI.ViewModels.Bootstrapper"
+    xmlns:base="clr-namespace:Froststrap.UI.Elements.Bootstrapper.Base"
+    xmlns:gv="using:Froststrap.UI.ViewModels"
+    mc:Ignorable="d"
+    x:Class="Froststrap.UI.Elements.Bootstrapper.FluentDialog"
+    x:DataType="vm:FluentDialogViewModel"
+    Width="380"
+    Height="204"
+    MinHeight="0"
+    CanResize="False"
+    Title="Bloomstrap"
+    WindowStartupLocation="CenterScreen"
+    Background="{DynamicResource BloomSurfaceSolidBrush}">
+
+    <base:AvaloniaDialogBase.Styles>
+        <!-- 4px progress line: #45475a track, pure mauve fill -->
+        <Style Selector="ProgressBar.launch">
+            <Setter Property="Height" Value="4" />
+            <Setter Property="MinHeight" Value="4" />
+            <Setter Property="Background" Value="{DynamicResource BloomLineBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource BloomAccentBrush}" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="ProgressBar">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2" ClipToBounds="True">
+                        <Panel>
+                            <Border Name="PART_Indicator"
+                                    HorizontalAlignment="Left"
+                                    CornerRadius="2"
+                                    Background="{TemplateBinding Foreground}"
+                                    IsVisible="{Binding !IsIndeterminate, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Border.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition Property="Width" Duration="0:0:0.18" Easing="CubicEaseOut" />
+                                    </Transitions>
+                                </Border.Transitions>
+                            </Border>
+                            <Border Name="Sweep"
+                                    HorizontalAlignment="Left"
+                                    CornerRadius="2"
+                                    Width="{Binding TemplateSettings.ContainerWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Background="{TemplateBinding Foreground}"
+                                    IsVisible="{Binding IsIndeterminate, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Panel>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ProgressBar.launch:indeterminate /template/ Border#Sweep">
+            <Style.Animations>
+                <Animation Duration="0:0:1.6" IterationCount="Infinite" Easing="CubicEaseOut">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+    </base:AvaloniaDialogBase.Styles>
+
+    <Border Name="Card"
+            BorderBrush="{DynamicResource BloomLineBrush}"
+            BorderThickness="1"
+            CornerRadius="12"
+            Padding="24,24,24,16">
+        <Grid RowDefinitions="Auto,16,Auto,16,Auto,12,Auto">
+            <!-- Mark in a mauve-tint capsule; the glyph sits 1px low to centre it optically -->
+            <Border Grid.Row="0"
+                    Width="60" Height="60"
+                    CornerRadius="18"
+                    HorizontalAlignment="Center"
+                    Background="{DynamicResource BloomAccentTintBrush}">
+                <Image Width="42" Height="42"
+                       Margin="0,1,0,0"
+                       Source="{Binding Icon}"
+                       RenderOptions.BitmapInterpolationMode="HighQuality" />
+            </Border>
+
+            <TextBlock Grid.Row="2"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="{DynamicResource BloomTextBody}"
+                       Foreground="{DynamicResource BloomSubtextBrush}"
+                       TextTrimming="CharacterEllipsis"
+                       Text="{Binding Message}" />
+
+            <ProgressBar Grid.Row="4"
+                         Classes="launch"
+                         IsIndeterminate="{Binding ProgressIndeterminate}"
+                         Maximum="{Binding ProgressMaximum}"
+                         Value="{Binding ProgressValue}" />
+
+            <Grid Grid.Row="6" ColumnDefinitions="*,Auto,*">
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Classes="hint"
+                           Text="{Binding ChannelText}"
+                           IsVisible="{x:Static gv:GlobalViewModel.IsWindowsOrMacOS}" />
+                <Button Grid.Column="1"
+                        Classes="quiet"
+                        Command="{Binding CancelInstallCommand}"
+                        Content="{Binding CancelButtonText}"
+                        IsEnabled="{Binding CancelEnabled}" />
+            </Grid>
+        </Grid>
+    </Border>
+</base:AvaloniaDialogBase>
