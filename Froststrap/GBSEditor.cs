@@ -333,7 +333,16 @@ internal class GBSEditor
         }
     }
 
+    // startup loads on a background thread while the settings window may load on the UI thread
+    private readonly object _loadLock = new();
+
     public void Load()
+    {
+        lock (_loadLock)
+            LoadLocked();
+    }
+
+    private void LoadLocked()
     {
         App.Logger.Info($"Loading from {FileLocation}...");
 

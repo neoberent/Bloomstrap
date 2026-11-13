@@ -171,7 +171,18 @@ namespace Froststrap.UI.ViewModels.Settings
 
         public EventHandler? RequestSaveNoticeEvent;
         public EventHandler? RequestCloseWindowEvent;
-        public bool GBSEnabled = App.GlobalSettings.Loaded;
+        // Startup loads Roblox's global settings in the background, and the window can open first.
+        // Reading Loaded alone then disabled the page for the whole session and left a blank page
+        // when it was the last one open, so load them here if startup hasn't yet.
+        public bool GBSEnabled = EnsureGlobalSettingsLoaded();
+
+        private static bool EnsureGlobalSettingsLoaded()
+        {
+            if (!App.GlobalSettings.Loaded)
+                App.GlobalSettings.Load();
+
+            return App.GlobalSettings.Loaded;
+        }
 
         public NextAction CloseAction { get; private set; } = NextAction.Terminate;
 
