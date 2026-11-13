@@ -82,13 +82,35 @@ namespace Froststrap
             // Inside an AppImage, ProcessPath is a temporary mount, APPIMAGE is the real file.
             static string ExePath => Environment.GetEnvironmentVariable("APPIMAGE") ?? Environment.ProcessPath!;
 
+            static string IconFile => Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "icons", "hicolor", "512x512", "apps", "bloomstrap.png");
+
+            // The AppImage carries its icon at the root of its mount; packages install theirs system-wide.
+            static string? AppImageIcon =>
+                Environment.GetEnvironmentVariable("APPIMAGE") is not null
+                && Environment.GetEnvironmentVariable("APPDIR") is { Length: > 0 } appDir
+                && File.Exists(Path.Combine(appDir, "Bloomstrap.png"))
+                    ? Path.Combine(appDir, "Bloomstrap.png")
+                    : null;
+
             public void Register()
             {
                 string mime = string.Concat(Schemes.Select(s => $"x-scheme-handler/{s};"));
 
+                // This file is both the link handler and the app menu entry. It must stay visible:
+                // it shadows a package's /usr/share/applications/bloomstrap.desktop of the same name.
                 Directory.CreateDirectory(Path.GetDirectoryName(DesktopFile)!);
                 File.WriteAllText(DesktopFile,
-                    $"[Desktop Entry]\nType=Application\nName=Bloomstrap\nExec=\"{ExePath}\" %u\nTerminal=false\nNoDisplay=true\nMimeType={mime}\n");
+                    "[Desktop Entry]\nType=Application\nName=Bloomstrap\nComment=Roblox bootstrapper for Sober on Linux\n" +
+                    $"Exec=\"{ExePath}\" %u\nIcon=bloomstrap\nTerminal=false\nCategories=Game;\nStartupWMClass=bloomstrap\nMimeType={mime}\n");
+
+                if (AppImageIcon is { } icon)
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(IconFile)!);
+                    File.Copy(icon, IconFile, overwrite: true);
+                    Run("gtk-update-icon-cache", $"-q -t \"{Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(IconFile)))}\"");
+                }
 
                 foreach (string scheme in Schemes)
                     Run("xdg-mime", $"default bloomstrap.desktop x-scheme-handler/{scheme}");
@@ -98,12 +120,18 @@ namespace Froststrap
             public void Unregister()
             {
                 if (File.Exists(DesktopFile)) File.Delete(DesktopFile);
+                if (AppImageIcon is not null && File.Exists(IconFile)) File.Delete(IconFile);
             }
 
             public bool IsRegistered()
             {
                 if (!File.Exists(DesktopFile)) return false;
-                if (!File.ReadAllText(DesktopFile).Contains($"Exec=\"{ExePath}\"", StringComparison.Ordinal)) return false;
+
+                string entry = File.ReadAllText(DesktopFile);
+                if (!entry.Contains($"Exec=\"{ExePath}\"", StringComparison.Ordinal)) return false;
+                // 1.0.0 and 1.0.1 wrote a hidden entry, which kept Bloomstrap out of the app menu
+                if (entry.Contains("NoDisplay=true", StringComparison.Ordinal)) return false;
+                if (AppImageIcon is not null && !File.Exists(IconFile)) return false;
 
                 using var query = Process.Start(new ProcessStartInfo("xdg-mime", "query default x-scheme-handler/roblox-player")
                 {
