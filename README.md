@@ -7,6 +7,10 @@
     A Roblox bootstrapper for Linux that launches the game through <a href="https://sober.vinegarhq.org">Sober</a>.
 </p>
 
+<p align="center">
+    <img src="./docs/screenshots/settings.png" width="640" alt="Bloomstrap's settings window"/>
+</p>
+
 ## What it does
 
 - Launches Sober (`org.vinegarhq.Sober`) and keeps it up to date, whether it was installed system-wide or per user.
@@ -20,6 +24,18 @@
 - Sober's output goes to `sober-output.log` in the log folder, not to a pipe that can close underneath it.
 - On NVIDIA, the shader cache is kept instead of being trimmed, so shaders aren't recompiled mid-game.
 - Sober starts windowed, so a fullscreen compositor doesn't lock it to the monitor's refresh rate.
+
+### Highest performance preset
+
+Linux Settings → Graphics presets → **Highest performance** sets the lowest Roblox graphics and every performance fast flag, switches Sober to Vulkan with GameMode, starts it with high CPU priority and the `scx_lavd` gaming scheduler, and uncaps the frame rate.
+
+Same spot in a game, with the preset off and on (Roblox's frame counter, Shift+F5):
+
+| Preset off | Preset on |
+| --- | --- |
+| ![About 1,600 FPS with the preset off](./docs/screenshots/performance-off.png) | ![About 4,500 FPS with the preset on](./docs/screenshots/performance-on.png) |
+
+These numbers come from a fairly strong PC, so you will probably see lower numbers on yours. The preset should still make a clear difference.
 
 ## Building
 
