@@ -282,7 +282,7 @@ Tempo de atividade: {1}</value>
     <value>Copiar o conteúdo do registo</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Ocorreu uma exceção durante a execução do Froststrap/Froststrap</value>
+    <value>Ocorreu uma exceção durante a execução do Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Consulte primeiro a [Wiki do Bloomstrap]({0}) para verificar se este problema já foi resolvido com uma correção.
@@ -535,9 +535,6 @@ Deseja atualizar a versão que tem atualmente instalada?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspirações</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Um garfo Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Servidor do Discord</value>

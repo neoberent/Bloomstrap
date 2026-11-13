@@ -51,8 +51,15 @@ internal partial class App : Application
     private const string MockCurrentVersionEnvironmentVariable = "MOCK_CURRENT_VERSION";
 
     public const string ProjectName = "Bloomstrap";
-    public const string ProjectOwner = "Froststrap";
-    public const string ProjectRepository = "Froststrap/Froststrap";
+    public const string ProjectOwner = "neoberent";
+    public const string ProjectRepository = "neoberent/Bloomstrap";
+    // Bloomstrap has no wiki of its own; the troubleshooting pages come from Bloxstrap, where this code started
+    // Discord application behind the "Bloomstrap RPC" status (shows as "Playing Bloomstrap").
+    // Its Rich Presence art needs an asset named "bloomstrap".
+    public const string DiscordApplicationId = "1570791734462652536";
+    public const string DiscordLargeImageKey = "bloomstrap";
+
+    public const string ProjectHelpWiki = "https://github.com/bloxstraplabs/bloxstrap/wiki";
     public const string ProjectDownloadLink = "https://github.com/neoberent/Bloomstrap/releases";
     public const string ProjectHelpLink = "https://github.com/bloxstraplabs/bloxstrap/wiki";
     public const string ProjectSupportLink = "https://github.com/neoberent/Bloomstrap/issues/new";

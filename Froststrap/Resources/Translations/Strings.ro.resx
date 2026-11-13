@@ -282,7 +282,7 @@ Timp de funcționare: {1}</value>
     <value>Copierea conținutului jurnalului</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>A apărut o excepție în timpul rulării Froststrap/Froststrap</value>
+    <value>A apărut o excepție în timpul rulării Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Verificați mai întâi [Bloomstrap Wiki]({0}) pentru a vedea dacă această problemă a fost deja rezolvată.
@@ -532,9 +532,6 @@ Doriți să actualizați versiunea instalată în prezent?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Surse de inspirație</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>O furcă Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Server Discord</value>

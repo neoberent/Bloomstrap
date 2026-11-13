@@ -279,7 +279,7 @@ Driftstid: {1}</value>
     <value>Kopier logindholdet</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Der opstod en undtagelse under kørsel af Froststrap/Froststrap</value>
+    <value>Der opstod en undtagelse under kørsel af Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Tjek først [Bloomstrap Wiki]({0}) for at se, om der allerede er fundet en løsning på dette problem.
@@ -523,9 +523,6 @@ Vil du opgradere den version, du har installeret i øjeblikket?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspiration</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>En Fishstrap/Froststrap-gaffel.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discord-server</value>

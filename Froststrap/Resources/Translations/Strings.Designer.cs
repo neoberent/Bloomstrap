@@ -3346,7 +3346,7 @@ namespace Froststrap.Resources {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to A Fishstrap/Froststrap Fork..
+        ///   Looks up a localized string similar to A Froststrap fork..
         /// </summary>
         public static string Menu_About_Description {
             get {

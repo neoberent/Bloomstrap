@@ -282,7 +282,7 @@ Czas działania: {1}</value>
     <value>Skopiuj zawartość dziennika</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Podczas uruchamiania Froststrap/Froststrap wystąpił wyjątek</value>
+    <value>Podczas uruchamiania Bloomstrap wystąpił wyjątek</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Najpierw sprawdź [Wiki Bloomstrap]({0}), aby upewnić się, czy problem ten nie został już rozwiązany.
@@ -535,9 +535,6 @@ Czy chcesz zaktualizować obecnie zainstalowaną wersję?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspiracje</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Widelec typu Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Serwer Discord</value>

@@ -25,7 +25,7 @@ namespace Froststrap.Integrations
 
         public FroststrapRichPresence()
         {
-            _rpcClient = new DiscordRpcClient("1399535282713399418", -1, new NullLogger(), true, DiscordIpcPipeClient.Create())
+            _rpcClient = new DiscordRpcClient(App.DiscordApplicationId, -1, new NullLogger(), true, DiscordIpcPipeClient.Create())
             {
                 SkipIdenticalPresence = true,
                 ShutdownOnly = true
@@ -111,7 +111,7 @@ namespace Froststrap.Integrations
                 Timestamps = _startTimestamps,
                 Assets = new Assets
                 {
-                    LargeImageKey = "froststrap",
+                    LargeImageKey = App.DiscordLargeImageKey,
                     LargeImageText = App.ProjectName,
                     SmallImageKey = "checkmark",
                     SmallImageText = DiscordPresenceHelper.Truncate($"{App.Version}", 128)

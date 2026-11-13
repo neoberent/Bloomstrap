@@ -285,7 +285,7 @@ Waktu operasional: {1}</value>
     <value>Salin isi log</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Terjadi pengecualian saat menjalankan Froststrap/Froststrap</value>
+    <value>Terjadi pengecualian saat menjalankan Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Silakan periksa [Bloomstrap Wiki]({0}) terlebih dahulu untuk melihat apakah masalah ini sudah diatasi dengan solusi yang tersedia.
@@ -532,9 +532,6 @@ Apakah Anda ingin memperbarui versi yang saat ini terpasang?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspirasi</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Garpu Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Server Discord</value>

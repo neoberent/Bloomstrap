@@ -285,7 +285,7 @@ Darbības laiks: {1}</value>
     <value>Kopēt žurnāla saturu</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Froststrap/Froststrap izpildes laikā radās izņēmums</value>
+    <value>Bloomstrap izpildes laikā radās izņēmums</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Vispirms pārbaudiet [Bloomstrap Wiki]({0}), lai noskaidrotu, vai šī problēma jau ir atrisināta.
@@ -538,9 +538,6 @@ Vai vēlaties atjaunināt pašlaik instalēto versiju?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Iedvesmas avoti</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>„Fishstrap”/„Bloomstrap” dakša.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>„Discord“ serveris</value>

@@ -279,7 +279,7 @@ Betriebszeit: {1}</value>
     <value>Protokollinhalt kopieren</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Beim Ausführen von Froststrap/Froststrap ist eine Ausnahme aufgetreten.</value>
+    <value>Beim Ausführen von Bloomstrap ist eine Ausnahme aufgetreten.</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Schauen Sie zunächst im [Bloomstrap-Wiki]({0}) nach, ob dieses Problem bereits behoben wurde.
@@ -523,9 +523,6 @@ Möchten Sie Ihre derzeit installierte Version aktualisieren?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspirationen</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Eine Fishstrap-/Froststrap-Gabel.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discord-Server</value>

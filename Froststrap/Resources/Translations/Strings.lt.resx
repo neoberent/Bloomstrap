@@ -285,7 +285,7 @@ Veikimo laikas: {1}</value>
     <value>Kopijuoti žurnalo turinį</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Vykdant „Froststrap/Froststrap“ įvyko išimtis</value>
+    <value>Vykdant „Bloomstrap“ įvyko išimtis</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Pirmiausia patikrinkite [„Bloomstrap“ Vikį]({0}), ar ši problema jau buvo išspręsta.
@@ -556,9 +556,6 @@ Ar norite atnaujinti šiuo metu įdiegtą versiją?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Įkvėpimo šaltiniai</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>„Fishstrap“/„Bloomstrap“ šakutė.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>„Discord“ serveris</value>

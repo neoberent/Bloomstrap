@@ -291,7 +291,7 @@
     <value>複製日誌內容</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>執行 Froststrap/Froststrap 時發生例外狀況</value>
+    <value>執行 Bloomstrap 時發生例外狀況</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>請先查閱 [Bloomstrap Wiki]({0})，確認此問題是否已透過修正方案解決。
@@ -550,9 +550,6 @@
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>借鑒</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>一個 Fishstrap/Froststrap 分支</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discord 伺服器</value>

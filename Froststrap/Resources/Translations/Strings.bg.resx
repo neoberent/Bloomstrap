@@ -285,7 +285,7 @@
     <value>Копиране на съдържанието на лога</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Възникна изключение при изпълнението на Froststrap/Froststrap</value>
+    <value>Възникна изключение при изпълнението на Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Първо проверете [Bloomstrap Wiki]({0}), за да видите дали този проблем вече е решен.
@@ -541,9 +541,6 @@
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Вдъхновения</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Вилка „Fishstrap“/„Bloomstrap“.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Сървър в Discord</value>

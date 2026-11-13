@@ -285,7 +285,7 @@
     <value>Скопировать содержимое журнала</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>При выполнении Froststrap/Froststrap произошло исключение</value>
+    <value>При выполнении Bloomstrap произошло исключение</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Сначала загляните в [Bloomstrap Wiki]({0}), чтобы проверить, не было ли уже найдено решение этой проблемы.
@@ -541,9 +541,6 @@
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Источники вдохновения</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Вилка Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Сервер Discord</value>

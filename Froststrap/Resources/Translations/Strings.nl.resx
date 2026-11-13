@@ -276,7 +276,7 @@ Uptime: {1}</value>
     <value>De inhoud van het logboek kopiëren</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Er is een uitzondering opgetreden tijdens het uitvoeren van Froststrap/Froststrap</value>
+    <value>Er is een uitzondering opgetreden tijdens het uitvoeren van Bloomstrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Kijk eerst op de [Bloomstrap Wiki]({0}) om te zien of er al een oplossing voor dit probleem is gevonden.
@@ -519,9 +519,6 @@ Wilt u de momenteel geïnstalleerde versie upgraden?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspiratiebronnen</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Een Fishstrap/Froststrap-vork.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discord-server</value>

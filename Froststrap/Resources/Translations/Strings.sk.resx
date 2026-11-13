@@ -282,7 +282,7 @@ Doba prevádzky: {1}</value>
     <value>Skopírovať obsah protokolu</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Pri spúšťaní programu Froststrap/Froststrap došlo k výnimke</value>
+    <value>Pri spúšťaní programu Bloomstrap došlo k výnimke</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Najskôr skontrolujte [Bloomstrap Wiki]({0}), či už nebol tento problém vyriešený.
@@ -532,9 +532,6 @@ Chcete aktualizovať svoju aktuálne nainštalovanú verziu?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inšpirácie</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Vidlica typu Fishstrap/Froststrap.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Server Discord</value>

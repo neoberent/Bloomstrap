@@ -58,8 +58,8 @@ namespace Froststrap.UI
 
             string info = string.Format(CultureInfo.InvariantCulture,
                 Strings.Dialog_PlayerError_HelpInformation,
-                $"https://github.com/{App.ProjectRepository}/wiki/Roblox-crashes-or-does-not-launch",
-                $"https://github.com/{App.ProjectRepository}/wiki/Switching-between-Roblox-and-Bloxstrap"
+                $"{App.ProjectHelpWiki}/Roblox-crashes-or-does-not-launch",
+                $"{App.ProjectHelpWiki}/Switching-between-Roblox-and-Bloxstrap"
             );
 
             await ShowMessageBox($"{topLine}\n\n{info}", MessageBoxImage.Error);

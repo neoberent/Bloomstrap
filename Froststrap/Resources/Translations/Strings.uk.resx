@@ -285,7 +285,7 @@
     <value>Скопіювати вміст журналу</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Під час виконання Froststrap/Froststrap сталася помилка</value>
+    <value>Під час виконання Bloomstrap сталася помилка</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Спочатку загляньте на [вікі Bloomstrap]({0}), щоб перевірити, чи вже не було виправлено цю проблему.
@@ -541,9 +541,6 @@
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Натхнення</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Вилка типу «Фішстрап»/«Фростстрап».</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Сервер Discord</value>

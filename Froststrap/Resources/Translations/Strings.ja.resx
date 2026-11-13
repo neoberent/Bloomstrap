@@ -127,7 +127,7 @@
     <value>現在、Robloxが利用できない可能性があります。詳細については{0}をご覧ください。</value>
   </data>
   <data name="Dialog.Connectivity.BadConnection" xml:space="preserve">
-    <value>接続できませんでした。これは、インターネット接続の状態が悪いか、ファイアウォールによるブロックが原因である可能性があります。接続に問題がない場合は、ウイルス対策ソフトがFroststrapをブロックしていないかご確認ください。</value>
+    <value>接続できませんでした。これは、インターネット接続の状態が悪いか、ファイアウォールによるブロックが原因である可能性があります。接続に問題がない場合は、ウイルス対策ソフトがBloomstrapをブロックしていないかご確認ください。</value>
   </data>
   <data name="Bootstrapper.NotEnoughSpace" xml:space="preserve">
     <value>Bloomstrapには、Robloxをダウンロードしてインストールするのに十分なディスク容量がありません。ディスクの空き容量を確保してから、もう一度お試しください。</value>
@@ -285,7 +285,7 @@
     <value>ログの内容をコピーする</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Froststrap/Froststrapの実行中に例外が発生しました</value>
+    <value>Bloomstrapの実行中に例外が発生しました</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>まず、[Bloomstrap Wiki]({0}) を確認し、この問題に対する修正がすでに公開されていないかご確認ください。
@@ -530,7 +530,7 @@
     <value>Bloomstrap が v{0} にアップグレードされました</value>
   </data>
   <data name="InstallChecker.VersionDifferentThanInstalled" xml:space="preserve">
-    <value>起動したFroststrapのバージョンは、現在インストールされているバージョンとは異なります。
+    <value>起動したBloomstrapのバージョンは、現在インストールされているバージョンとは異なります。
 現在インストールされているバージョンをアップグレードしますか？</value>
   </data>
   <data name="Menu.About.Contributors" xml:space="preserve">
@@ -540,13 +540,10 @@
     <value>コード</value>
   </data>
   <data name="Menu.About.Contributors.Description" xml:space="preserve">
-    <value>これらはすべて、BloomstrapとFroststrapに顕著な貢献をし、現在の姿へと形作ってきた人々です。</value>
+    <value>これらはすべて、BloomstrapとBloomstrapに顕著な貢献をし、現在の姿へと形作ってきた人々です。</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>インスピレーション</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>フィッシュストラップ／フロストストラップ・フォーク。</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discordサーバー</value>
@@ -592,7 +589,7 @@
     <value>アプリのテーマ</value>
   </data>
   <data name="Menu.Appearance.Custom.Theme.Description" xml:space="preserve">
-    <value>プリセットを使ってFroststrapのテーマを簡単にカスタマイズしたり、自分だけのオリジナルデザインを作成したりできます。</value>
+    <value>プリセットを使ってBloomstrapのテーマを簡単にカスタマイズしたり、自分だけのオリジナルデザインを作成したりできます。</value>
   </data>
   <data name="Menu.Appearance.Icon.Description" xml:space="preserve">
     <value>Bloomstrap で使用するアイコンを選択してください。</value>
@@ -625,7 +622,7 @@
     <value>インスタンス起動の確認</value>
   </data>
   <data name="Menu.Bootstrapper.Description" xml:space="preserve">
-    <value>Robloxを起動する際にFroststrapがどのような動作を行うかを設定します。</value>
+    <value>Robloxを起動する際にBloomstrapがどのような動作を行うかを設定します。</value>
   </data>
   <data name="Menu.Bootstrapper.ForceRobloxReinstall.Description" xml:space="preserve">
     <value>次回起動時に、Robloxのクリーンインストールが行われます。</value>
@@ -963,7 +960,7 @@
     <value>Bloomstrap をアンインストールする</value>
   </data>
   <data name="Uninstaller.Text" xml:space="preserve">
-    <value>アンインストールすると、システムからFroststrapが削除され、Robloxランチャーがまだインストールされている場合は、自動的にデフォルトの設定に再設定されます。
+    <value>アンインストールすると、システムからBloomstrapが削除され、Robloxランチャーがまだインストールされている場合は、自動的にデフォルトの設定に再設定されます。
 
 Robloxに関する問題が発生したためにアンインストールまたは再インストールを行う場合は、まず[こちらのヘルプページ]({0})をお読みください。
 
@@ -1030,7 +1027,7 @@ Bloomstrapは「{1}」にインストールされていました。</value>
     <comment>Referring to code licenses; see https://opensource.org/licenses for example</comment>
   </data>
   <data name="InstallChecker.VersionLessThanInstalled" xml:space="preserve">
-    <value>起動したFroststrapのバージョンは、現在インストールされているバージョンよりも古いものです。
+    <value>起動したBloomstrapのバージョンは、現在インストールされているバージョンよりも古いものです。
 問題が発生したり、設定が変更されたりする可能性があります。再インストールすることをお勧めします。
 本当に続行しますか？</value>
   </data>
@@ -1043,7 +1040,7 @@ Bloomstrapは「{1}」にインストールされていました。</value>
   <data name="Dialog.PlayerError.HelpInformation" xml:space="preserve">
     <value>この現象が発生する原因や解決方法については、[こちらのヘルプ記事]({0})をご覧ください。
 
-[オリジナルのランチャー]({1})でRobloxが動作するか確認してください。動作しない場合は、これはFroststrapの問題ではありません。動作する場合は、ヘルプ記事を参照してください。</value>
+[オリジナルのランチャー]({1})でRobloxが動作するか確認してください。動作しない場合は、これはBloomstrapの問題ではありません。動作する場合は、ヘルプ記事を参照してください。</value>
   </data>
   <data name="Common.Loading" xml:space="preserve">
     <value>読み込み中、しばらくお待ちください...</value>
@@ -1367,7 +1364,7 @@ Bloomstrapは「{1}」にインストールされていました。</value>
     <value>ダブルクリック時の動作</value>
   </data>
   <data name="Menu.Integrations.DoubleClickAction.Description" xml:space="preserve">
-    <value>Robloxを起動中に、システムトレイにあるFroststrapをダブルクリックすると、特定のウィンドウが開きます。</value>
+    <value>Robloxを起動中に、システムトレイにあるBloomstrapをダブルクリックすると、特定のウィンドウが開きます。</value>
   </data>
   <data name="Menu.Integrations.FroststrapRPC.Description" xml:space="preserve">
     <value>これを有効にすると、アプリが起動している間、Discordのプロフィールにカスタムの「Playing Bloomstrap」RPCが表示されます。</value>
@@ -2303,7 +2300,7 @@ Bloomstrapは「{1}」にインストールされていました。</value>
     <value>現在プレイ中のゲームに参加するための小さなボタンが追加されます。</value>
   </data>
   <data name="Menu.Integrations.StudioRPC.PluginConfirmation" xml:space="preserve">
-    <value>これは、ユーザーの操作内容を記録する特注のFroststrapプラグインを追加することで機能します。
+    <value>これは、ユーザーの操作内容を記録する特注のBloomstrapプラグインを追加することで機能します。
 このプラグインをインストールしますか？</value>
   </data>
   <data name="Menu.PresetMods.OpenModsFolder" xml:space="preserve">

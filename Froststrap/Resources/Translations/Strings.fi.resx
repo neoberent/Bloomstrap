@@ -282,7 +282,7 @@ Käyttöaika: {1}</value>
     <value>Kopioi lokin sisältö</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Froststrap/Froststrap-ohjelman suorituksen aikana ilmeni poikkeus</value>
+    <value>Bloomstrap-ohjelman suorituksen aikana ilmeni poikkeus</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Tarkista ensin [Bloomstrap-wikistä]({0}), onko tähän ongelmaan jo löydetty ratkaisu.
@@ -535,9 +535,6 @@ Haluatko päivittää tällä hetkellä asennetun version?</value>
   </data>
   <data name="Menu.About.Contributors.Insipirations" xml:space="preserve">
     <value>Inspiraatioita</value>
-  </data>
-  <data name="Menu.About.Description" xml:space="preserve">
-    <value>Fishstrap/Froststrap-haarukka.</value>
   </data>
   <data name="Menu.About.DiscordServer" xml:space="preserve">
     <value>Discord-palvelin</value>
