@@ -89,6 +89,12 @@ namespace Froststrap.UI.ViewModels.Settings
             set => App.Settings.Prop.SoberHighPriority = value;
         }
 
+        public static bool SoberGamingScheduler
+        {
+            get => App.Settings.Prop.SoberGamingScheduler;
+            set => App.Settings.Prop.SoberGamingScheduler = value;
+        }
+
         public static bool SoberAllowGamepadPermission
         {
             get => App.SoberSettings.GetPreset("AllowGamepadPermission") == "true";

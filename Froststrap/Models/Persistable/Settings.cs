@@ -99,6 +99,9 @@ namespace Froststrap.Models.Persistable
         public bool AutomaticallyUpdateSober { get; set; } = true;
         /// <summary>Start Sober at nice -10 with a high CPU weight (Linux, via systemd-run).</summary>
         public bool SoberHighPriority { get; set; } = true;
+
+        /// <summary>Run the scx_lavd scheduler (Gaming mode) while Sober runs, if scxctl is available.</summary>
+        public bool SoberGamingScheduler { get; set; } = true;
         public int MaxThreadDownload { get; set; } = 3;
         public string RobloxDomain { get; set; } = RobloxInterfaces.Deployment.DefaultRobloxDomain;
         public bool StaticDirectory { get; set; }

@@ -940,10 +940,20 @@ internal partial class Bootstrapper : IDisposable
         {
             App.Logger.Warn("systemd-run not found, starting Sober as a child process (it inherits our resource limits)");
         }
+        // $1 = output log, $2 = "1" to run the scx_lavd gaming scheduler for this session, rest = flatpak args.
+        // The scheduler is started and stopped inside this shell, so it ends with Sober even if Bloomstrap
+        // has already exited. It is only stopped if this launch started it (no other scheduler was running).
         startInfo.ArgumentList.Add("-c");
-        startInfo.ArgumentList.Add("out=$1; shift; exec flatpak run \"$@\" </dev/null >\"$out\" 2>&1");
+        startInfo.ArgumentList.Add(
+            "out=$1; scx=$2; shift 2; started=; " +
+            "if [ \"$scx\" = 1 ] && command -v scxctl >/dev/null 2>&1 && scxctl get 2>/dev/null | grep -q 'no scx scheduler'; then " +
+            "scxctl start --sched lavd --mode gaming >/dev/null 2>&1 && started=1; fi; " +
+            "flatpak run \"$@\" </dev/null >\"$out\" 2>&1; rc=$?; " +
+            "if [ -n \"$started\" ]; then scxctl stop >/dev/null 2>&1; fi; " +
+            "exit $rc");
         startInfo.ArgumentList.Add("sh");
         startInfo.ArgumentList.Add(soberOutputLog);
+        startInfo.ArgumentList.Add(App.Settings.Prop.SoberGamingScheduler ? "1" : "0");
         // NVIDIA trims its shader cache when it grows past the size limit, and Roblox fills it fast. Trimmed
         // shaders are recompiled during play, which shows up as stutter. Other drivers ignore this variable.
         startInfo.ArgumentList.Add("--env=__GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1");

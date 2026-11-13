@@ -10041,5 +10041,24 @@ namespace Froststrap.Resources {
                 return ResourceManager.GetString("Menu.LinuxSettings.HighPriority.Description", resourceCulture);
             }
         }
+            /// <summary>
+        ///   Looks up a localized string similar to Gaming CPU scheduler.
+        /// </summary>
+        public static string Menu_LinuxSettings_GamingScheduler_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.GamingScheduler.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Runs the scx_lavd scheduler in Gaming mode while Sober is open, and switches bac.
+        /// </summary>
+        public static string Menu_LinuxSettings_GamingScheduler_Description {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.GamingScheduler.Description", resourceCulture);
+            }
+        }
+
+
     }
 }
