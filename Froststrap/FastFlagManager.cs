@@ -68,6 +68,7 @@ namespace Froststrap
         public static IReadOnlyDictionary<TextureQuality, string?> TextureQualityLevels => new Dictionary<TextureQuality, string?>
         {
             { TextureQuality.Default, null },
+            { TextureQuality.High, "3" },
             { TextureQuality.Medium, "2" },
             { TextureQuality.Low, "1" },
             { TextureQuality.Lowest, "0" },

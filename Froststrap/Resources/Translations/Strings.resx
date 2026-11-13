@@ -3438,4 +3438,39 @@ Close Roblox first. This can take a while.</value>
   <data name="Menu.Diagnostics.Screenshot.Failed" xml:space="preserve">
     <value>Failed to save the screenshot.</value>
   </data>
+  <data name="Menu.LinuxSettings.GraphicsPresets.Title" xml:space="preserve">
+    <value>Graphics presets</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetPerformance.Title" xml:space="preserve">
+    <value>Highest performance</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetPerformance.Description" xml:space="preserve">
+    <value>Lowest Roblox graphics, every performance fast flag (lowest lighting, textures and mesh detail, no grass, no anti-aliasing), Vulkan, GameMode and an uncapped frame rate.</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetQuality.Title" xml:space="preserve">
+    <value>Highest quality</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetQuality.Description" xml:space="preserve">
+    <value>Maximum Roblox graphics: top lighting and texture quality, 4× anti-aliasing, full mesh detail and grass, Vulkan and GameMode. Your frame rate cap is left as it is.</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetConfirm" xml:space="preserve">
+    <value>Load the "{0}" preset?
+
+It replaces your graphics fast flags, Roblox's graphics settings and Sober's renderer settings. Nothing is written until you press Save.</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetApplied" xml:space="preserve">
+    <value>"{0}" loaded. Press Save to keep it, or leave without saving to discard it.</value>
+  </data>
+  <data name="Menu.LinuxSettings.PresetGbsSkipped" xml:space="preserve">
+    <value>Roblox's own graphics settings were left unchanged because that file is read-only or couldn't be loaded. The fast flags and Sober settings were still changed.</value>
+  </data>
+  <data name="Menu.LinuxSettings.GraphicsMode.Title" xml:space="preserve">
+    <value>Sober graphics mode</value>
+  </data>
+  <data name="Menu.LinuxSettings.GraphicsMode.Description" xml:space="preserve">
+    <value>How Sober trades graphics for speed. Performance lowers mesh detail and texture quality; Quality gives desktop-like graphics.</value>
+  </data>
+  <data name="Enums.TextureQuality.High" xml:space="preserve">
+    <value>High</value>
+  </data>
 </root>

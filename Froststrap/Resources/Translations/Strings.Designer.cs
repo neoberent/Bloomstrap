@@ -9926,5 +9926,103 @@ namespace Froststrap.Resources {
                 return ResourceManager.GetString("Menu.Diagnostics.Screenshot.Failed", resourceCulture);
             }
         }
+            /// <summary>
+        ///   Looks up a localized string similar to Graphics presets.
+        /// </summary>
+        public static string Menu_LinuxSettings_GraphicsPresets_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.GraphicsPresets.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highest performance.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetPerformance_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetPerformance.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lowest Roblox graphics, every performance fast flag (lowest lighting, textures a.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetPerformance_Description {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetPerformance.Description", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Highest quality.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetQuality_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetQuality.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Roblox graphics: top lighting and texture quality, 4× anti-aliasing, ful.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetQuality_Description {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetQuality.Description", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load the "{0}" preset?.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetConfirm {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetConfirm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to "{0}" loaded. Press Save to keep it, or leave without saving to discard it..
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetApplied {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetApplied", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Roblox's own graphics settings were left unchanged because that file is read-onl.
+        /// </summary>
+        public static string Menu_LinuxSettings_PresetGbsSkipped {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.PresetGbsSkipped", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sober graphics mode.
+        /// </summary>
+        public static string Menu_LinuxSettings_GraphicsMode_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.GraphicsMode.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to How Sober trades graphics for speed. Performance lowers mesh detail and texture .
+        /// </summary>
+        public static string Menu_LinuxSettings_GraphicsMode_Description {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.GraphicsMode.Description", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to High.
+        /// </summary>
+        public static string Enums_TextureQuality_High {
+            get {
+                return ResourceManager.GetString("Enums.TextureQuality.High", resourceCulture);
+            }
+        }
     }
 }

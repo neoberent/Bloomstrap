@@ -23,9 +23,39 @@ SPDX-License-Identifier: MPL-2.0
     <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <StackPanel Margin="14,10">
             <controls:SectionHeader
+                Title="{x:Static resources:Strings.Menu_LinuxSettings_GraphicsPresets_Title}"
+                IsVisible="{Binding SoberEnabled}"
+                Margin="0,4,0,4" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8" Margin="0,0,0,8" IsVisible="{Binding SoberEnabled}">
+                <controls:CardAction
+                    Grid.Column="0"
+                    Icon="Zap"
+                    Header="{x:Static resources:Strings.Menu_LinuxSettings_PresetPerformance_Title}"
+                    Description="{x:Static resources:Strings.Menu_LinuxSettings_PresetPerformance_Description}"
+                    Command="{Binding ApplyPerformancePresetCommand}" />
+                <controls:CardAction
+                    Grid.Column="1"
+                    Icon="Sparkles"
+                    Header="{x:Static resources:Strings.Menu_LinuxSettings_PresetQuality_Title}"
+                    Description="{x:Static resources:Strings.Menu_LinuxSettings_PresetQuality_Description}"
+                    Command="{Binding ApplyQualityPresetCommand}" />
+            </Grid>
+
+            <controls:SectionHeader
                 Title="{x:Static resources:Strings.Common_Sober}"
                 IsVisible="{Binding SoberEnabled}"
                 Margin="0,4,0,4" />
+
+            <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_LinuxSettings_GraphicsMode_Title}"
+                Description="{x:Static resources:Strings.Menu_LinuxSettings_GraphicsMode_Description}"
+                IsVisible="{Binding SoberEnabled}">
+                <ComboBox
+                    MinWidth="160"
+                    ItemsSource="{Binding SoberGraphicsModes}"
+                    SelectedItem="{Binding SoberGraphicsMode, Mode=TwoWay}" />
+            </controls:OptionControl>
 
             <controls:OptionControl
                 Header="{x:Static resources:Strings.Menu_LinuxSettings_AllowGamepadPermission_Title}"

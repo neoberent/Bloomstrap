@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MPL-2.0
 
 using CommunityToolkit.Mvvm.Input;
+using Froststrap.Integrations;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -26,7 +27,60 @@ namespace Froststrap.UI.ViewModels.Settings
 
             OpenWineCfgCommand = new RelayCommand(OpenWineCfg);
 
+            ApplyPerformancePresetCommand = new AsyncRelayCommand(() => ApplyPresetAsync(GraphicsPreset.Performance, Strings.Menu_LinuxSettings_PresetPerformance_Title));
+            ApplyQualityPresetCommand = new AsyncRelayCommand(() => ApplyPresetAsync(GraphicsPreset.Quality, Strings.Menu_LinuxSettings_PresetQuality_Title));
+
             OnPropertyChanged(nameof(IsWineAvailable));
+        }
+
+        public ICommand ApplyPerformancePresetCommand { get; }
+        public ICommand ApplyQualityPresetCommand { get; }
+
+        private async Task ApplyPresetAsync(GraphicsPreset preset, string name)
+        {
+            var answer = await Frontend.ShowMessageBox(
+                string.Format(CultureInfo.CurrentCulture, Strings.Menu_LinuxSettings_PresetConfirm, name),
+                MessageBoxImage.Question,
+                MessageBoxButton.YesNo);
+
+            if (answer != MessageBoxResult.Yes)
+                return;
+
+            bool globalSettingsChanged = GraphicsPresets.Apply(preset);
+
+            // the Sober toggles on this page changed too
+            OnPropertyChanged(string.Empty);
+
+            string message = string.Format(CultureInfo.CurrentCulture, Strings.Menu_LinuxSettings_PresetApplied, name);
+            if (!globalSettingsChanged)
+                message += "\n\n" + Strings.Menu_LinuxSettings_PresetGbsSkipped;
+
+            await Frontend.ShowMessageBox(message, globalSettingsChanged ? MessageBoxImage.Information : MessageBoxImage.Warning);
+        }
+
+        /// <summary>Sober's graphics_optimization_mode values, as shown in the drop-down (Sober's own names).</summary>
+        public static IReadOnlyList<string> SoberGraphicsModes { get; } = ["Quality", "Balanced", "Performance"];
+
+        public static string SoberGraphicsMode
+        {
+            get
+            {
+                string? mode = App.SoberSettings.GetPreset("GraphicsOptimizationMode");
+                return SoberGraphicsModes.FirstOrDefault(m => string.Equals(m, mode, StringComparison.OrdinalIgnoreCase)) ?? "Balanced";
+            }
+            set
+            {
+                string? mode = value switch
+                {
+                    "Quality" => "quality",
+                    "Balanced" => "balanced",
+                    "Performance" => "performance",
+                    _ => null
+                };
+
+                if (mode is not null)
+                    App.SoberSettings.SetPreset("GraphicsOptimizationMode", mode);
+            }
         }
 
         public static bool SoberAllowGamepadPermission

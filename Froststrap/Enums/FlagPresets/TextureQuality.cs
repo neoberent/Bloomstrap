@@ -9,6 +9,9 @@ namespace Froststrap.Enums.FlagPresets
         [EnumName(FromTranslation = "Enums.TextureQuality.Default")]
         Default,
 
+        [EnumName(FromTranslation = "Enums.TextureQuality.High")]
+        High,
+
         [EnumName(FromTranslation = "Enums.TextureQuality.Medium")]
         Medium,
 

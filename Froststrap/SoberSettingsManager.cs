@@ -22,6 +22,7 @@ internal class SoberSettingsManager : JsonManager<Dictionary<string, object>>
         ["UseConsoleExperience"] = "use_console_experience",
         ["UseLibsecret"] = "use_libsecret",
         ["UseOpengl"] = "use_opengl",
+        ["GraphicsOptimizationMode"] = "graphics_optimization_mode",
         ["ServerLocationIndicatorEnabled"] = "server_location_indicator_enabled",
         ["DiscordRpcEnabled"] = "discord_rpc_enabled",
         ["DiscordRpcShowJoinButton"] = "discord_rpc_show_join_button",
@@ -78,6 +79,11 @@ internal class SoberSettingsManager : JsonManager<Dictionary<string, object>>
                 long l => l.ToString(CultureInfo.InvariantCulture),
                 double d => d.ToString(CultureInfo.InvariantCulture),
                 string s => s,
+                // values read from config.json stay JsonElements until something sets them
+                System.Text.Json.JsonElement { ValueKind: System.Text.Json.JsonValueKind.True } => "true",
+                System.Text.Json.JsonElement { ValueKind: System.Text.Json.JsonValueKind.False } => "false",
+                System.Text.Json.JsonElement { ValueKind: System.Text.Json.JsonValueKind.String } e => e.GetString(),
+                System.Text.Json.JsonElement e => e.GetRawText(),
                 _ => val.ToString()
             };
         }
