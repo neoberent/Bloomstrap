@@ -97,6 +97,8 @@ namespace Froststrap.Models.Persistable
         public bool DisableAnimations { get; set; }
         public bool UpdateRoblox { get; set; } = true;
         public bool AutomaticallyUpdateSober { get; set; } = true;
+        /// <summary>Start Sober at nice -10 with a high CPU weight (Linux, via systemd-run).</summary>
+        public bool SoberHighPriority { get; set; } = true;
         public int MaxThreadDownload { get; set; } = 3;
         public string RobloxDomain { get; set; } = RobloxInterfaces.Deployment.DefaultRobloxDomain;
         public bool StaticDirectory { get; set; }

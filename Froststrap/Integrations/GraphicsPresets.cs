@@ -32,6 +32,9 @@ namespace Froststrap.Integrations
         {
             App.Logger.Info($"Loading the {preset} graphics preset");
 
+            if (preset == GraphicsPreset.Performance)
+                App.Settings.Prop.SoberHighPriority = true;
+
             ApplyFastFlags(preset);
             ApplySober(preset);
             return ApplyGlobalSettings(preset);

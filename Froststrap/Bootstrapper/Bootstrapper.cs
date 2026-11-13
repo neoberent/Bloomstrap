@@ -913,6 +913,18 @@ internal partial class Bootstrapper : IDisposable
             startInfo.ArgumentList.Add($"--unit=bloomstrap-sober-{Environment.ProcessId}");
             startInfo.ArgumentList.Add("--description=Sober (started by Bloomstrap)");
 
+            // Higher CPU priority for every Sober process, including the game process it re-executes
+            // (named "Main", which ananicy-cpp's "sober" rule never matches). Nice -10 is within the
+            // limit the gamemode group gets; CPUWeight only matters when other work competes for the CPU.
+            // Scheduling class stays normal: realtime limits are what killed Sober before.
+            if (App.Settings.Prop.SoberHighPriority)
+            {
+                startInfo.ArgumentList.Add("--property=Nice=-10");
+                startInfo.ArgumentList.Add("--property=CPUWeight=1000");
+                startInfo.ArgumentList.Add("--property=IOSchedulingClass=best-effort");
+                startInfo.ArgumentList.Add("--property=IOSchedulingPriority=0");
+            }
+
             // the user manager usually has these already; pass ours so a minimal session still works
             foreach (string name in (string[])["DISPLAY", "WAYLAND_DISPLAY", "XAUTHORITY", "XDG_RUNTIME_DIR",
                          "DBUS_SESSION_BUS_ADDRESS", "XDG_CURRENT_DESKTOP", "XDG_SESSION_TYPE"])
@@ -970,6 +982,9 @@ internal partial class Bootstrapper : IDisposable
                 catch (Exception ex) { App.Logger.Warn($"Could not read Sober exit code: {ex.Message}"); }
                 finally { process.Dispose(); }
             }, TaskScheduler.Default);
+            if (App.Settings.Prop.SoberHighPriority && systemdRun is not null)
+                _ = Task.Run(RaiseSoberScopeWeightAsync);
+
             App.Logger.Debug("Launching Watcher...");
             await PrepareWatcherIfNeededAsync(autoclosePids);
 
@@ -1429,6 +1444,53 @@ internal partial class Bootstrapper : IDisposable
             return null;
 
         return line[installingIndex..].Trim();
+    }
+
+    /// <summary>
+    /// flatpak moves Sober into its own scope (app-flatpak-org.vinegarhq.Sober-N.scope), so the
+    /// CPUWeight on our systemd-run unit never reaches the game. Give the scope the weight instead.
+    /// </summary>
+    private static async Task RaiseSoberScopeWeightAsync()
+    {
+        try
+        {
+            for (int attempt = 0; attempt < 30; attempt++)
+            {
+                string scopes = await RunForOutputAsync("systemctl",
+                    ["--user", "list-units", "--type=scope", "--state=running", "--no-legend", "--plain", $"app-flatpak-{SoberFlatpakId}-*"]);
+
+                string? scope = scopes.Split('\n', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(line => line.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault())
+                    .LastOrDefault(name => name is not null && name.EndsWith(".scope", StringComparison.Ordinal));
+
+                if (scope is not null)
+                {
+                    await RunForOutputAsync("systemctl", ["--user", "set-property", "--runtime", scope, "CPUWeight=1000"]);
+                    App.Logger.Info($"Raised CPU weight of {scope} to 1000");
+                    return;
+                }
+
+                await Task.Delay(1000);
+            }
+
+            App.Logger.Warn("Sober's flatpak scope didn't appear; CPU weight left at default");
+        }
+        catch (Exception ex)
+        {
+            App.Logger.Warn($"Could not raise Sober's CPU weight: {ex.Message}");
+        }
+    }
+
+    private static async Task<string> RunForOutputAsync(string fileName, string[] args)
+    {
+        var info = new ProcessStartInfo(fileName) { UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true };
+        foreach (string arg in args)
+            info.ArgumentList.Add(arg);
+
+        using var process = Process.Start(info) ?? throw new InvalidOperationException($"{fileName} did not start");
+        string output = await process.StandardOutput.ReadToEndAsync();
+        await process.WaitForExitAsync();
+        return output;
     }
 
     private async Task<bool> EnsureSoberInstalledAsync()

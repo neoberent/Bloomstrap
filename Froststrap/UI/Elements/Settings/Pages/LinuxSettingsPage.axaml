@@ -58,6 +58,13 @@ SPDX-License-Identifier: MPL-2.0
             </controls:OptionControl>
 
             <controls:OptionControl
+                Header="{x:Static resources:Strings.Menu_LinuxSettings_HighPriority_Title}"
+                Description="{x:Static resources:Strings.Menu_LinuxSettings_HighPriority_Description}"
+                IsVisible="{Binding SoberEnabled}">
+                <ToggleSwitch IsChecked="{Binding SoberHighPriority, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl
                 Header="{x:Static resources:Strings.Menu_LinuxSettings_AllowGamepadPermission_Title}"
                 Description="{x:Static resources:Strings.Menu_LinuxSettings_AllowGamepadPermission_Description}"
                 IsVisible="{Binding SoberEnabled}">

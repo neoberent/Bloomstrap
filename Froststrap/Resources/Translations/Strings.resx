@@ -3445,7 +3445,7 @@ Close Roblox first. This can take a while.</value>
     <value>Highest performance</value>
   </data>
   <data name="Menu.LinuxSettings.PresetPerformance.Description" xml:space="preserve">
-    <value>Lowest Roblox graphics, every performance fast flag (lowest lighting, textures and mesh detail, no grass, no anti-aliasing), Vulkan, GameMode and an uncapped frame rate.</value>
+    <value>Lowest Roblox graphics, every performance fast flag (lowest lighting, textures and mesh detail, no grass, no anti-aliasing), Vulkan, GameMode, high CPU priority and an uncapped frame rate.</value>
   </data>
   <data name="Menu.LinuxSettings.PresetQuality.Title" xml:space="preserve">
     <value>Highest quality</value>
@@ -3472,5 +3472,11 @@ It replaces your graphics fast flags, Roblox's graphics settings and Sober's ren
   </data>
   <data name="Enums.TextureQuality.High" xml:space="preserve">
     <value>High</value>
+  </data>
+  <data name="Menu.LinuxSettings.HighPriority.Title" xml:space="preserve">
+    <value>High CPU priority</value>
+  </data>
+  <data name="Menu.LinuxSettings.HighPriority.Description" xml:space="preserve">
+    <value>Starts Sober at a higher CPU priority (nice -10) and gives it ten times the CPU share of other programs when they compete. Applies from the next launch.</value>
   </data>
 </root>

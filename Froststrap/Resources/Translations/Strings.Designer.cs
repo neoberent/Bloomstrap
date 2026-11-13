@@ -10024,5 +10024,22 @@ namespace Froststrap.Resources {
                 return ResourceManager.GetString("Enums.TextureQuality.High", resourceCulture);
             }
         }
+            /// <summary>
+        ///   Looks up a localized string similar to High CPU priority.
+        /// </summary>
+        public static string Menu_LinuxSettings_HighPriority_Title {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.HighPriority.Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Starts Sober at a higher CPU priority (nice -10) and gives it ten times the CPU .
+        /// </summary>
+        public static string Menu_LinuxSettings_HighPriority_Description {
+            get {
+                return ResourceManager.GetString("Menu.LinuxSettings.HighPriority.Description", resourceCulture);
+            }
+        }
     }
 }
