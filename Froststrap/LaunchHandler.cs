@@ -35,9 +35,31 @@ namespace Froststrap
 
                 default:
                     App.Logger.Info("Closing");
-                    App.Terminate(ErrorCode.ERROR_SUCCESS);
+                    TerminateIfIdle();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Ends the process unless part of it is still in use. Save and Launch keeps the settings
+        /// window open while the game runs, so the game ending must not close that window, and
+        /// closing the window mid-game must not stop the watcher (Discord presence, tray icon).
+        /// </summary>
+        private static void TerminateIfIdle()
+        {
+            if (Volatile.Read(ref App.SettingsOpen))
+            {
+                App.Logger.Info("Settings window is still open, keeping Bloomstrap running");
+                return;
+            }
+
+            if (Volatile.Read(ref _activeWatcher) is not null)
+            {
+                App.Logger.Info("Roblox is still being watched, keeping Bloomstrap running");
+                return;
+            }
+
+            App.Terminate();
         }
 
         public static async Task ProcessLaunchArgs()
@@ -317,7 +339,7 @@ namespace Froststrap
             // A repeated browser launch must not `flatpak kill` the Sober the first one just started
             if (OperatingSystem.IsLinux() && launchMode == LaunchMode.Player && !Utility.SoberLaunchGuard.TryBegin())
             {
-                App.Terminate();
+                TerminateIfIdle();
                 return;
             }
 
@@ -336,7 +358,7 @@ namespace Froststrap
 
                 if (result != MessageBoxResult.Yes)
                 {
-                    App.Terminate();
+                    TerminateIfIdle();
                     return;
                 }
             }
@@ -376,7 +398,11 @@ namespace Froststrap
 
                 if (watcherData is null)
                 {
-                    App.Terminate();
+                    // releases the bootstrapper's lock, in case the settings window launches again
+                    App.Bootstrapper.Dispose();
+                    App.Bootstrapper = null;
+
+                    TerminateIfIdle();
                     return;
                 }
 
@@ -389,7 +415,7 @@ namespace Froststrap
                 bool handedOff = await Dispatcher.UIThread.InvokeAsync(() => LaunchWatcher(watcherData));
 
                 if (!handedOff)
-                    App.Terminate();
+                    TerminateIfIdle();
             }, TaskScheduler.Default);
 
 
@@ -456,7 +482,7 @@ namespace Froststrap
                 if (App.Settings.Prop.CleanerOptions != CleanerOptions.Never)
                     Cleaner.DoCleaning();
 
-                App.Terminate();
+                TerminateIfIdle();
             }, TaskScheduler.Default);
 
             return true;
