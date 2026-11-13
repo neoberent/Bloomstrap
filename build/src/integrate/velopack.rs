@@ -32,9 +32,9 @@ pub fn pack(version: String, pack_dir: &std::path::Path, entitlements: Option<&s
 
     let mut args: Vec<String> = [
         "pack",
-        "--packId", "Froststrap",
-        "--packTitle", "Froststrap",
-        "--packAuthors", "Froststrap",
+        "--packId", "Bloomstrap",
+        "--packTitle", "Bloomstrap",
+        "--packAuthors", "Neo Berent",
         "--packVersion", &version,
         "--packDir", &pack_path,
         "--outputDir", &velopack_path.to_string_lossy(),
@@ -74,7 +74,7 @@ pub fn pack(version: String, pack_dir: &std::path::Path, entitlements: Option<&s
     #[cfg(target_os = "macos")]
     {
         use std::env;
-        args.extend(["--bundleId".to_string(), "xyz.froststrap.desktop".to_string()]);
+        args.extend(["--bundleId".to_string(), "dev.neoberent.bloomstrap".to_string()]);
 
         if env::var("SIGN").is_ok_and(|v| v.eq_ignore_ascii_case("true")) {
             let Some(entitlements) = entitlements else {

@@ -35,7 +35,7 @@ fn version() -> String {
 fn version_for_run() -> String {
     const DEFAULT: &str = "v0.0.2";
 
-    let tag = if let Some(v) = env_nonempty("FROSTSTRAP_VERSION") {
+    let tag = if let Some(v) = env_nonempty("BLOOMSTRAP_VERSION").or_else(|| env_nonempty("FROSTSTRAP_VERSION")) {
         v
     } else if env::var("GITHUB_REF_TYPE").as_deref() == Ok("tag") {
         env_nonempty("GITHUB_REF_NAME").unwrap_or_default()

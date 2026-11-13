@@ -10,7 +10,7 @@ pub fn main() {
     }
     let version = super::version();
     let icon = path::xtask_root().join("icon512.png");
-    let desktop = path::dist().join("froststrap.desktop");
+    let desktop = path::dist().join("bloomstrap.desktop");
 
     std::fs::create_dir_all(path::dist()).unwrap();
 
@@ -26,13 +26,14 @@ fn desktop_entry(version: &str) -> String {
         r#"
         [Desktop Entry]
         Type=Application
-        Name=Froststrap
-        Comment=A fork of Fishstrap, focused on performance and customization
-        Exec=froststrap %u
-        TryExec=froststrap
-        Icon=froststrap
+        Name=Bloomstrap
+        Comment=Roblox bootstrapper for Sober on Linux
+        Exec=bloomstrap %u
+        TryExec=bloomstrap
+        Icon=bloomstrap
         Terminal=false
         Categories=Game;
+        StartupWMClass=bloomstrap
         MimeType=x-scheme-handler/roblox;x-scheme-handler/roblox-player;
         X-AppImage-Version={version}
     "#
@@ -82,8 +83,8 @@ fn build_nfpm(
 
     for p in ["deb", "rpm", "archlinux"] {
         let out_name = match p {
-            "archlinux" => format!("Froststrap-linux-{}-{}.pkg.tar.zst", arch::target_arch(), p),
-            _ => format!("Froststrap-linux-{}.{}", arch::target_arch(), p),
+            "archlinux" => format!("Bloomstrap-linux-{}-{}.pkg.tar.zst", arch::target_arch(), p),
+            _ => format!("Bloomstrap-linux-{}.{}", arch::target_arch(), p),
         };
         
         log::info!("Building .{} via nFPM", p);
@@ -139,7 +140,7 @@ fn nfpm_config(
     version: &str,
     native_libs: &[PathBuf],
 ) -> String {
-    let mut native_contents = String::from("              - dst: /usr/lib/froststrap\n                type: dir\n");
+    let mut native_contents = String::from("              - dst: /usr/lib/bloomstrap\n                type: dir\n");
 
     for path in native_libs {
         let name = path
@@ -148,7 +149,7 @@ fn nfpm_config(
             .unwrap_or_default();
 
         native_contents.push_str(&format!(
-            "              - src: {}\n                dst: /usr/lib/froststrap/{}\n",
+            "              - src: {}\n                dst: /usr/lib/bloomstrap/{}\n                file_info:\n                  mode: 0755\n",
             path.to_string_lossy(),
             name
         ));
@@ -156,37 +157,45 @@ fn nfpm_config(
 
     dedent(&format!(
         r#"
-            name: froststrap
+            name: bloomstrap
             arch: {arch}
             platform: linux
             version: {version}
             license: MPL-2.0
-            maintainer: Froststrap
-            description: Roblox bootstrapper and mod manager
+            maintainer: Neo Berent <235731897+neoberent@users.noreply.github.com>
+            homepage: https://github.com/neoberent/Bloomstrap
+            description: Roblox bootstrapper for Sober on Linux
 
+            # per-format depends replace the shared list, so each one repeats dbus and flatpak
             overrides:
               deb:
                 depends:
                   - libicu-dev
+                  - dbus
+                  - flatpak
               rpm:
                 depends:
                   - libicu
+                  - dbus
+                  - flatpak
               archlinux:
                 depends:
                   - icu
-            
-            depends:
-              - dbus
+                  - dbus
+                  - flatpak
+
+            archlinux:
+              packager: Neo Berent <235731897+neoberent@users.noreply.github.com>
 
             contents:
               - src: {}
-                dst: /usr/bin/froststrap
+                dst: /usr/bin/bloomstrap
                 file_info:
                   mode: 0755
               - src: {}
-                dst: /usr/share/icons/hicolor/512x512/apps/froststrap.png
+                dst: /usr/share/icons/hicolor/512x512/apps/bloomstrap.png
               - src: {}
-                dst: /usr/share/applications/froststrap.desktop
+                dst: /usr/share/applications/bloomstrap.desktop
 
 {native_contents}
             scripts:
